@@ -1,8 +1,10 @@
 import React from 'react';
-import {SafeAreaView, useColorScheme} from 'react-native';
+import { SafeAreaView, useColorScheme } from 'react-native';
+import { ThemeProvider } from '@emotion/react';
 
-import {Colors} from 'react-native/Libraries/NewAppScreen';
-import {HomeScreen} from './src/Home/HomeScreen';
+import { Colors } from 'react-native/Libraries/NewAppScreen';
+import { HomeScreen } from './src/Home/HomeScreen';
+import { theme } from './src/theme/theme';
 
 const App = () => {
   const isDarkMode = useColorScheme() === 'dark';
@@ -13,7 +15,9 @@ const App = () => {
 
   return (
     <SafeAreaView style={backgroundStyle}>
-      <HomeScreen />
+      <ThemeProvider theme={theme}>
+        <HomeScreen />
+      </ThemeProvider>
     </SafeAreaView>
   );
 };
