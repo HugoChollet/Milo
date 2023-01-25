@@ -2,7 +2,7 @@ import React, { memo } from 'react';
 import { useTheme } from '@emotion/react';
 import { Svg, Path } from 'react-native-svg';
 
-import { DEFAULT_ICON_SIZE_PX } from '@boson/icons/Icon.constants';
+import { DEFAULT_ICON_SIZE_PX } from './Icon.constants';
 
 import { IconType } from './Icon.types';
 

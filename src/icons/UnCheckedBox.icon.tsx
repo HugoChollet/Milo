@@ -1,7 +1,7 @@
 import React, { memo } from 'react';
 import { Svg, Path } from 'react-native-svg';
 
-import { DEFAULT_ICON_SIZE_PX } from '@boson/icons/Icon.constants';
+import { DEFAULT_ICON_SIZE_PX } from './Icon.constants';
 
 import { IconType } from './Icon.types';
 
@@ -11,8 +11,7 @@ const UncheckedBoxIconSvg: IconType = ({ size = DEFAULT_ICON_SIZE_PX }) => {
       width={size}
       height={size}
       viewBox="0 0 24 24"
-      testID="UnCheckBox-icon"
-    >
+      testID="UnCheckBox-icon">
       <Path
         fill-rule="evenodd"
         clip-rule="evenodd"
