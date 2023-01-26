@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { fireEvent, screen } from '@testing-library/react-native';
 
-import { wrapAndRender } from '@shared/helpers/jest/render';
+import { wrapAndRender } from '../../shared/jest/render';
 
 import { CheckBox } from './CheckBox.component';
 

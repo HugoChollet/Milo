@@ -16,8 +16,9 @@ export const Label = ({ isDisabled, children }: LabelProps) => {
 
   return (
     <Typography.P1
-      color={isDisabled ? theme.colors.grey[300] : theme.colors.typography.text}
-    >
+      color={
+        isDisabled ? theme.colors.grey[300] : theme.colors.typography.text
+      }>
       {children}
     </Typography.P1>
   );

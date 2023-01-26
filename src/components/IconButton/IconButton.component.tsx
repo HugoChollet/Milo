@@ -1,7 +1,7 @@
 import React from 'react';
 import { useTheme } from '@emotion/react';
 
-import { IconType } from '@boson/icons/Icon.types';
+import { IconType } from '../../icons/Icon.types';
 
 import { Container } from './IconButton.styles';
 
@@ -29,8 +29,7 @@ export const IconButton = ({
       onPress={onPress}
       disabled={isDisabled}
       color={isDisabled ? theme.colors.grey[200] : color}
-      border={border}
-    >
+      border={border}>
       <Icon color={isDisabled ? theme.colors.grey[200] : color} size={size} />
     </Container>
   );

@@ -1,10 +1,10 @@
 import * as React from 'react';
 import { screen, fireEvent } from '@testing-library/react-native';
 
-import { wrapAndRender } from '@shared/helpers/jest/render';
+import { wrapAndRender } from '../../shared/jest/render';
 
-import { CrossIcon } from '@boson/icons/Cross.icon';
-import { IconButton } from '@boson/components/IconButton/IconButton.component';
+import { CrossIcon } from '../../icons/Cross.icon';
+import { IconButton } from './IconButton.component';
 
 describe('Icon Button Component', () => {
   it('should render the icon', () => {

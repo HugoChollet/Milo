@@ -1,7 +1,7 @@
 import * as React from 'react';
 import { screen, fireEvent } from '@testing-library/react-native';
 
-import { wrapAndRender } from '@shared/helpers/jest/render';
+import { wrapAndRender } from '../../shared/jest/render';
 
 import { Button } from './Button.component';
 import { CrossIcon } from '../../icons/Cross.icon';
