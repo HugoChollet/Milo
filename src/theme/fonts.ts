@@ -1,27 +1,10 @@
 import {
-  FontFamily,
   Fonts,
   ParagraphFontSize,
   ParagraphFontType,
   TitleFontSize,
   FontStyle,
-  FontSource,
 } from './fonts.types';
-
-export const fontFiles: Record<Readonly<FontFamily>, FontSource> = {
-  ['OpenSans-Bold']: require('./fonts/OpenSans-Bold.ttf'),
-  ['OpenSans-BoldItalic']: require('./fonts/OpenSans-BoldItalic.ttf'),
-  ['OpenSans-ExtraBold']: require('./fonts/OpenSans-ExtraBold.ttf'),
-  ['OpenSans-ExtraBoldItalic']: require('./fonts/OpenSans-ExtraBoldItalic.ttf'),
-  ['OpenSans-Italic']: require('./fonts/OpenSans-Italic.ttf'),
-  ['OpenSans-Light']: require('./fonts/OpenSans-Light.ttf'),
-  ['OpenSans-LightItalic']: require('./fonts/OpenSans-LightItalic.ttf'),
-  ['OpenSans-Medium']: require('./fonts/OpenSans-Medium.ttf'),
-  ['OpenSans-MediumItalic']: require('./fonts/OpenSans-MediumItalic.ttf'),
-  ['OpenSans-Regular']: require('./fonts/OpenSans-Regular.ttf'),
-  ['OpenSans-SemiBold']: require('./fonts/OpenSans-SemiBold.ttf'),
-  ['OpenSans-SemiBoldItalic']: require('./fonts/OpenSans-SemiBoldItalic.ttf'),
-};
 
 const getTitleFont = (fontSize: number): FontStyle => ({
   fontSize,
