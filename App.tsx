@@ -8,14 +8,16 @@ import { theme } from './src/theme/theme';
 import { HomeScreen } from './src/Home/HomeScreen';
 import { LoginScreen } from './src/Login/LoginScreen';
 
+import { RootStackParamList } from './src/types/RootStack';
+
 const App = () => {
-  const Stack = createNativeStackNavigator();
+  const Stack = createNativeStackNavigator<RootStackParamList>();
 
   return (
     <NavigationContainer>
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
-          <Stack.Navigator>
+          <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
           </Stack.Navigator>
