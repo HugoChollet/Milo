@@ -1,22 +1,29 @@
 import React from 'react';
 import { Text, View } from 'react-native';
 import styled from '@emotion/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { Button } from '../components/Button/Button.component';
 import { Spacer } from '../components/Spacer/Spacer.component';
 
-const test = () => {
-  console.log('ok');
-};
+import { RootStackParamList } from '../types/RootStack';
 
-export const HomeScreen = () => {
+type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
+
+export const HomeScreen = ({ navigation }: Props) => {
   return (
     <Container>
       <Text>Welcome</Text>
       <View>
-        <Button.Primary label={'Login'} onPress={test} />
+        <Button.Primary
+          label={'Login'}
+          onPress={() => navigation.navigate('Login')}
+        />
         <Spacer.Vertical size={16} />
-        <Button.Primary label={'Register'} onPress={test} />
+        <Button.Primary
+          label={'Register'}
+          onPress={() => navigation.navigate('Register')}
+        />
       </View>
     </Container>
   );
