@@ -14,6 +14,9 @@ export const HomeScreen = ({ navigation }: Props) => {
   return (
     <Container>
       <Text>Welcome</Text>
+      <ImageContainer
+        source={require('../../assets/AiGenerated/samuelatruelle_cute_bull_welcoming_you_thick_drawing.png')}
+      />
       <View>
         <Button.Primary
           label={'Login'}
@@ -34,4 +37,8 @@ const Container = styled.View(() => ({
   flexDirection: 'column',
   alignItems: 'center',
   justifyContent: 'space-around',
+}));
+
+const ImageContainer = styled.Image(() => ({
+  flex: 1,
 }));
