@@ -8,7 +8,7 @@ import { Input } from '../components/Input/Input.component';
 export const LoginScreen = () => {
   return (
     <Container>
-      <Text>Login</Text>
+      <TitleContainer>Welcome Back !</TitleContainer>
       <View>
         <Input label="Email" placeholder="name.surname@mail.com" />
         <Spacer.Vertical size={16} />
@@ -17,6 +17,11 @@ export const LoginScreen = () => {
     </Container>
   );
 };
+
+const TitleContainer = styled.Text(() => ({
+  flexDirection: 'row',
+  textAlign: 'center',
+}));
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
