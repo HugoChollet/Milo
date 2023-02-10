@@ -1,24 +1,27 @@
 import React from 'react';
-import { SafeAreaView, useColorScheme } from 'react-native';
 import { ThemeProvider } from '@emotion/react';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { NavigationContainer } from '@react-navigation/native';
+import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
-import { Colors } from 'react-native/Libraries/NewAppScreen';
-import { HomeScreen } from './src/Home/HomeScreen';
 import { theme } from './src/theme/theme';
+import { HomeScreen } from './src/Home/HomeScreen';
+
+import { RootStackParamList } from './src/types/RootStack';
 
 const App = () => {
-  const isDarkMode = useColorScheme() === 'dark';
-
-  const backgroundStyle = {
-    backgroundColor: isDarkMode ? Colors.darker : Colors.lighter,
-  };
+  const Stack = createNativeStackNavigator<RootStackParamList>();
 
   return (
-    <SafeAreaView style={backgroundStyle}>
-      <ThemeProvider theme={theme}>
-        <HomeScreen />
-      </ThemeProvider>
-    </SafeAreaView>
+    <NavigationContainer>
+      <SafeAreaProvider>
+        <ThemeProvider theme={theme}>
+          <Stack.Navigator initialRouteName="Home">
+            <Stack.Screen name="Home" component={HomeScreen} />
+          </Stack.Navigator>
+        </ThemeProvider>
+      </SafeAreaProvider>
+    </NavigationContainer>
   );
 };
 
