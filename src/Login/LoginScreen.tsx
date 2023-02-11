@@ -4,11 +4,12 @@ import styled from '@emotion/native';
 
 import { Spacer } from '../components/Spacer/Spacer.component';
 import { Input } from '../components/Input/Input.component';
+import { Typography } from '../components/Typography/Typography.component';
 
 export const LoginScreen = () => {
   return (
     <Container>
-      <TitleContainer>Welcome Back !</TitleContainer>
+      <TitleContainer size="m">Welcome Back !</TitleContainer>
       <View>
         <Input label="Email" placeholder="name.surname@mail.com" />
         <Spacer.Vertical size={16} />
@@ -18,7 +19,7 @@ export const LoginScreen = () => {
   );
 };
 
-const TitleContainer = styled.Text(() => ({
+const TitleContainer = styled(Typography.Title)(() => ({
   flexDirection: 'row',
   textAlign: 'center',
 }));
