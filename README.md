@@ -1,2 +1,2 @@
 # Milo
-The Milo app help users acheive their goal with visual metrics !
+The Milo app helps users acheive their goals with visual metrics !
