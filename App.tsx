@@ -6,6 +6,7 @@ import { createNativeStackNavigator } from '@react-navigation/native-stack';
 
 import { theme } from './src/theme/theme';
 import { HomeScreen } from './src/Home/HomeScreen';
+import { LoginScreen } from './src/Login/LoginScreen';
 
 import { RootStackParamList } from './src/types/RootStack';
 
@@ -18,6 +19,8 @@ const App = () => {
         <ThemeProvider theme={theme}>
           <Stack.Navigator initialRouteName="Home">
             <Stack.Screen name="Home" component={HomeScreen} />
+            <Stack.Screen name="Login" component={LoginScreen} />
+            <Stack.Screen name="Register" component={LoginScreen} />
           </Stack.Navigator>
         </ThemeProvider>
       </SafeAreaProvider>
