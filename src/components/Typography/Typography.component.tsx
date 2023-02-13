@@ -20,7 +20,7 @@ const Title = ({ children, size, color }: TitleProps) => {
   return (
     <Text
       style={[
-        // theme.fonts.title[size],
+        theme.fonts.title[size],
         { color: color ?? theme.colors.typography.text },
       ]}>
       {children}

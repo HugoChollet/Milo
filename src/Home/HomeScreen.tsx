@@ -13,7 +13,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Home'>;
 export const HomeScreen = ({ navigation }: Props) => {
   return (
     <Container>
-      <Text>Welcome</Text>
+      <TitleContainer>Welcome</TitleContainer>
       <ImageContainer
         source={require('../../assets/AiGenerated/samuelatruelle_cute_bull_welcoming_you_thick_drawing.png')}
       />
@@ -41,4 +41,9 @@ const Container = styled.View(() => ({
 
 const ImageContainer = styled.Image(() => ({
   flex: 1,
+}));
+
+const TitleContainer = styled.Text(() => ({
+  fontSize: 21,
+  fontFamily: 'OpenSans-Medium',
 }));
