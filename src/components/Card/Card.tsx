@@ -13,6 +13,7 @@ export type CardProps = {
   title: string;
   subtitle?: string;
   onPress: () => void;
+  completion?: number;
 };
 
 export const Card = ({
