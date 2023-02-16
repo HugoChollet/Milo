@@ -2,9 +2,9 @@ import React from 'react';
 
 import { screen } from '@testing-library/react-native';
 import { wrapAndRender } from '../shared/jest/render';
-import { ProgramsList } from './ProgramsList';
+import { ProgramList } from './ProgramList';
 
-const mockedPrograms = [
+const mockedProgram = [
   {
     name: 'name',
     objective: 'goal',
@@ -15,9 +15,9 @@ const mockedPrograms = [
   },
 ];
 
-describe('Programs List', () => {
+describe('Program List', () => {
   test('should data on one card', () => {
-    wrapAndRender(<ProgramsList data={mockedPrograms} />);
+    wrapAndRender(<ProgramList data={mockedProgram} />);
 
     expect(screen.getByText('name')).toBeTruthy();
   });

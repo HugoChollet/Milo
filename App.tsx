@@ -9,7 +9,7 @@ import { HomeScreen } from './src/Home/HomeScreen';
 import { LoginScreen } from './src/Login/LoginScreen';
 
 import { RootStackParamList } from './src/types/RootStack';
-import { ProgramsScreen } from './src/Program/ProgramsScreen';
+import { ProgramScreen } from './src/Program/ProgramScreen';
 
 const App = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -18,11 +18,11 @@ const App = () => {
     <NavigationContainer>
       <SafeAreaProvider>
         <ThemeProvider theme={theme}>
-          <Stack.Navigator initialRouteName="Programs">
+          <Stack.Navigator initialRouteName="Program">
             <Stack.Screen name="Home" component={HomeScreen} />
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={LoginScreen} />
-            <Stack.Screen name="Programs" component={ProgramsScreen} />
+            <Stack.Screen name="Program" component={ProgramScreen} />
           </Stack.Navigator>
         </ThemeProvider>
       </SafeAreaProvider>

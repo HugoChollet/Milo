@@ -2,5 +2,5 @@ export type RootStackParamList = {
   Home: undefined;
   Login: undefined;
   Register: undefined;
-  Programs: undefined;
+  Program: undefined;
 };
