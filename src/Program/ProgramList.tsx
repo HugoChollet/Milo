@@ -1,21 +1,38 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { FlatList } from 'react-native';
 import styled from '@emotion/native';
-import { IconButton } from '../components/IconButton/IconButton.component';
-import { CrossIcon } from '../icons/Cross.icon';
 
-export const ProgramList = () => {
+import { ProgramData } from './ProgramDataType';
+import { Card } from '../components/Card/Card';
+
+const programCard = ({ item }: { item: ProgramData }) => {
+  console.log(item);
+
+  return (
+    <Card
+      title={item.name}
+      subtitle={item.objective}
+      onPress={() => {}}
+      image={item.image}
+      completion={item.completion}
+    />
+  );
+};
+
+type ProgramListProps = {
+  data: Array<ProgramData>;
+};
+
+export const ProgramList = ({ data }: ProgramListProps) => {
   return (
     <Container>
-      {/* <FlatList /> */}
-      <IconButton Icon={CrossIcon} onPress={() => {}} />
+      <FlatList data={data} renderItem={programCard} />
     </Container>
   );
 };
 
-const Container = styled.View(() => ({
+const Container = styled.View(({ theme }) => ({
   flex: 1,
   flexDirection: 'column',
-  alignItems: 'center',
-  justifyContent: 'space-around',
+  paddingHorizontal: theme.spaces.m,
 }));
