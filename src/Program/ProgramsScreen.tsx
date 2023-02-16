@@ -2,12 +2,12 @@ import React, { useEffect, useState } from 'react';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/native';
 
-import { ProgramList } from './ProgramsList';
+import { ProgramsList } from './ProgramsList';
 import { CrossIcon } from '../icons/Cross.icon';
 import { IconButton } from '../components/IconButton/IconButton.component';
 import { ProgramsData } from './ProgramsDataType';
 
-export const ProgramScreen = () => {
+export const ProgramsScreen = () => {
   const [programsData, setProgramsData] = useState<Array<ProgramsData>>(null);
 
   useEffect(() => {
@@ -27,7 +27,7 @@ export const ProgramScreen = () => {
 
   return (
     <Container>
-      <ProgramList data={programsData} />
+      <ProgramsList data={programsData} />
       <IconButton Icon={CrossIcon} onPress={() => {}} />
     </Container>
   );

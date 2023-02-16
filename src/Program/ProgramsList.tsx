@@ -19,11 +19,11 @@ const programCard = ({ item }: { item: ProgramsData }) => {
   );
 };
 
-type ProgramListProps = {
+type ProgramsListProps = {
   data: Array<ProgramsData>;
 };
 
-export const ProgramList = ({ data }: ProgramListProps) => {
+export const ProgramsList = ({ data }: ProgramsListProps) => {
   return (
     <Container>
       <FlatList data={data} renderItem={programCard} />
