@@ -1,4 +1,4 @@
-export type ProgramData = {
+export type ProgramsData = {
   name: string;
   objective: string;
   tags?: Array<string>;

@@ -2,18 +2,18 @@ import React, { useEffect, useState } from 'react';
 import { useTheme } from '@emotion/react';
 import styled from '@emotion/native';
 
-import { ProgramList } from './ProgramList';
+import { ProgramList } from './ProgramsList';
 import { CrossIcon } from '../icons/Cross.icon';
 import { IconButton } from '../components/IconButton/IconButton.component';
-import { ProgramData } from './ProgramDataType';
+import { ProgramsData } from './ProgramsDataType';
 
 export const ProgramScreen = () => {
-  const [programData, setProgramData] = useState<Array<ProgramData>>(null);
+  const [programsData, setProgramsData] = useState<Array<ProgramsData>>(null);
 
   useEffect(() => {
     console.log('test');
 
-    setProgramData([
+    setProgramsData([
       {
         name: 'string',
         objective: 'string',
@@ -27,7 +27,7 @@ export const ProgramScreen = () => {
 
   return (
     <Container>
-      <ProgramList data={programData} />
+      <ProgramList data={programsData} />
       <IconButton Icon={CrossIcon} onPress={() => {}} />
     </Container>
   );

@@ -9,7 +9,7 @@ import { HomeScreen } from './src/Home/HomeScreen';
 import { LoginScreen } from './src/Login/LoginScreen';
 
 import { RootStackParamList } from './src/types/RootStack';
-import { ProgramScreen } from './src/Program/ProgramScreen';
+import { ProgramScreen } from './src/Program/ProgramsScreen';
 
 const App = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();

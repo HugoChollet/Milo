@@ -2,10 +2,10 @@ import React, { useState } from 'react';
 import { FlatList } from 'react-native';
 import styled from '@emotion/native';
 
-import { ProgramData } from './ProgramDataType';
+import { ProgramsData } from './ProgramsDataType';
 import { Card } from '../components/Card/Card';
 
-const programCard = ({ item }: { item: ProgramData }) => {
+const programCard = ({ item }: { item: ProgramsData }) => {
   console.log(item);
 
   return (
@@ -20,7 +20,7 @@ const programCard = ({ item }: { item: ProgramData }) => {
 };
 
 type ProgramListProps = {
-  data: Array<ProgramData>;
+  data: Array<ProgramsData>;
 };
 
 export const ProgramList = ({ data }: ProgramListProps) => {
