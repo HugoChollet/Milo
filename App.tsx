@@ -10,6 +10,7 @@ import { LoginScreen } from './src/Login/LoginScreen';
 
 import { RootStackParamList } from './src/types/RootStack';
 import { ProgramScreen } from './src/Program/ProgramScreen';
+import { CreateProgram } from './src/Program/CreateProgram';
 
 const App = () => {
   const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -23,6 +24,7 @@ const App = () => {
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={LoginScreen} />
             <Stack.Screen name="Program" component={ProgramScreen} />
+            <Stack.Screen name="CreateProgram" component={CreateProgram} />
           </Stack.Navigator>
         </ThemeProvider>
       </SafeAreaProvider>

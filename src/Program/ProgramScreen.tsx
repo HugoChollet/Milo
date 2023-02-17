@@ -7,7 +7,12 @@ import { CrossIcon } from '../icons/Cross.icon';
 import { IconButton } from '../components/IconButton/IconButton.component';
 import { ProgramData } from './ProgramDataType';
 
-export const ProgramScreen = () => {
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/RootStack';
+
+type Props = NativeStackScreenProps<RootStackParamList, 'Program'>;
+
+export const ProgramScreen = ({ navigation }: Props) => {
   const [programData, setProgramData] = useState<Array<ProgramData>>(null);
 
   useEffect(() => {
@@ -28,7 +33,10 @@ export const ProgramScreen = () => {
   return (
     <Container>
       <ProgramList data={programData} />
-      <IconButton Icon={CrossIcon} onPress={() => {}} />
+      <IconButton
+        Icon={CrossIcon}
+        onPress={() => navigation.navigate('CreateProgram')}
+      />
     </Container>
   );
 };
