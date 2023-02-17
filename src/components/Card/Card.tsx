@@ -12,7 +12,7 @@ export type CardProps = {
   image?: string;
   title: string;
   subtitle?: string;
-  onPress: () => void;
+  onPress?: () => void;
   completion?: number;
 };
 
