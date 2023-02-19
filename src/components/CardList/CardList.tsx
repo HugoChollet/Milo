@@ -2,16 +2,15 @@ import React, { useState } from 'react';
 import { FlatList } from 'react-native';
 import styled from '@emotion/native';
 
-import { ProgramData } from './ProgramDataType';
-import { Card } from '../components/Card/Card';
+import { Card, CardProps } from '../Card/Card';
 
-const programCard = ({ item }: { item: ProgramData }) => {
+const programCard = ({ item }: { item: CardProps }) => {
   console.log(item);
 
   return (
     <Card
-      title={item.name}
-      subtitle={item.objective}
+      title={item.title}
+      subtitle={item.subtitle}
       onPress={() => {}}
       image={item.image}
       completion={item.completion}
@@ -19,11 +18,11 @@ const programCard = ({ item }: { item: ProgramData }) => {
   );
 };
 
-type ProgramListProps = {
-  data: Array<ProgramData>;
+type CardListProps = {
+  data: Array<CardProps>;
 };
 
-export const ProgramList = ({ data }: ProgramListProps) => {
+export const CardList = ({ data }: CardListProps) => {
   return (
     <Container>
       <FlatList data={data} renderItem={programCard} />
