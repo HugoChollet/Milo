@@ -1,23 +1,23 @@
 import React from 'react';
 
 import { screen } from '@testing-library/react-native';
-import { wrapAndRender } from '../shared/jest/render';
-import { ProgramList } from './ProgramList';
+import { wrapAndRender } from '../../shared/jest/render';
+import { CardList } from './CardList';
 
 const mockedProgram = [
   {
-    name: 'name',
-    objective: 'goal',
+    title: 'name',
+    subtitle: 'goal',
   },
   {
-    name: 'test',
-    objective: 'click',
+    title: 'test',
+    subtitle: 'click',
   },
 ];
 
 describe('Program List', () => {
   test('should data on one card', () => {
-    wrapAndRender(<ProgramList data={mockedProgram} />);
+    wrapAndRender(<CardList data={mockedProgram} />);
 
     expect(screen.getByText('name')).toBeTruthy();
   });
