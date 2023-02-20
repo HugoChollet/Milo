@@ -38,7 +38,7 @@ export const ProgramScreen = ({ navigation }: Props) => {
           data={programData.map(data => {
             const tmp = {
               title: data.name,
-              subtitle: data.objective,
+              subtitle: data.objective.toString(),
             };
             return tmp;
           })}

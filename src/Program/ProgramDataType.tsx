@@ -1,6 +1,7 @@
 export type ProgramData = {
   name: string;
-  objective: string;
+  current?: number;
+  objective: number;
   tags?: Array<string>;
   image?: string;
   completion?: number;
