@@ -22,12 +22,12 @@ export const CreateProgram = () => {
         }}
       />
       <ExerciseContainer>
-        <Dropdown data={unit} />
         <NumberContainer
           setProgram={text => {
             setProgram({ ...program, objective: parseInt(text, 10) });
           }}
         />
+        <Dropdown data={unit} />
       </ExerciseContainer>
     </Container>
   );
@@ -39,25 +39,32 @@ const NumberContainer = ({
   setProgram: (text: string) => void;
 }) => {
   return (
-    <>
+    <SmallInputContainer>
       <Input
         label="Goal :"
         placeholder="10"
         onBlur={({ nativeEvent: { text } }) => setProgram(text)}
       />
       <Input
-        label="Current Performance :"
+        label="Start from :"
         placeholder="5"
         onBlur={({ nativeEvent: { text } }) => setProgram(text)}
       />
-    </>
+    </SmallInputContainer>
   );
 };
 
-const ExerciseContainer = styled.View(({ theme }) => ({}));
+const ExerciseContainer = styled.View(({ theme }) => ({
+  flex: 1,
+  flexDirection: 'row',
+}));
 
 const Container = styled.View(({ theme }) => ({
   flex: 1,
   flexDirection: 'column',
   paddingHorizontal: theme.spaces.m,
+}));
+
+const SmallInputContainer = styled.View(({ theme }) => ({
+  width: theme.spaces.doubleXl * 2,
 }));
