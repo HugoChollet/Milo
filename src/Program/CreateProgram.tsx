@@ -1,16 +1,17 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import styled from '@emotion/native';
 
-import { CrossIcon } from '../icons/Cross.icon';
-import { IconButton } from '../components/IconButton/IconButton.component';
 import { ProgramData } from './ProgramDataType';
 import { Input } from '../components/Input/Input.component';
 import { Dropdown } from '../components/DropDown/Dropdown';
+import { DateButton } from '../components/DateButton/DateButton';
 
 const unit = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
 
 export const CreateProgram = () => {
   const [program, setProgram] = useState<ProgramData>(null);
+  const [date, setDate] = useState(new Date());
+  const [time, setTime] = useState(new Date());
 
   return (
     <Container>
@@ -29,6 +30,18 @@ export const CreateProgram = () => {
         />
         <Dropdown data={unit} />
       </ExerciseContainer>
+      <DateButton
+        label={'Goal Date :'}
+        mode="date"
+        date={date}
+        setDate={setDate}
+      />
+      <DateButton
+        label={'Time Reminder :'}
+        mode="time"
+        date={time}
+        setDate={setTime}
+      />
     </Container>
   );
 };
@@ -55,7 +68,6 @@ const NumberContainer = ({
 };
 
 const ExerciseContainer = styled.View(({ theme }) => ({
-  flex: 1,
   flexDirection: 'row',
 }));
 
@@ -63,6 +75,7 @@ const Container = styled.View(({ theme }) => ({
   flex: 1,
   flexDirection: 'column',
   paddingHorizontal: theme.spaces.m,
+  justifyContent: 'space-around',
 }));
 
 const SmallInputContainer = styled.View(({ theme }) => ({
