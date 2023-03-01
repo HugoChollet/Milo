@@ -3,5 +3,5 @@ export type RootStackParamList = {
   Login: undefined;
   Register: undefined;
   Program: undefined;
-  CreateProgram: undefined;
+  CreateProgramScreen: undefined;
 };

@@ -46,7 +46,7 @@ export const ProgramScreen = ({ navigation }: Props) => {
       )}
       <IconButton
         Icon={CrossIcon}
-        onPress={() => navigation.navigate('CreateProgram')}
+        onPress={() => navigation.navigate('CreateProgramScreen')}
       />
     </Container>
   );

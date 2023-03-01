@@ -11,10 +11,12 @@ import { readData } from '../localStorage/readData';
 
 const unit = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
 
-export const CreateProgram = () => {
+export const CreateProgramScreen = () => {
   const [program, setProgram] = useState<ProgramData>({
     name: '',
-    objective: 1,
+    objective: 0,
+    current: 0,
+    unit: 'unit',
   });
   const mockedKey = 'abc';
 
@@ -42,8 +44,11 @@ export const CreateProgram = () => {
       <ExerciseContainer>
         <NumberContainer
           program={program}
-          setProgram={text => {
+          setObjective={text => {
             setProgram({ ...program, objective: parseInt(text, 10) });
+          }}
+          setCurrent={text => {
+            setProgram({ ...program, current: parseInt(text, 10) });
           }}
         />
         <Dropdown data={unit} />
@@ -70,24 +75,26 @@ export const CreateProgram = () => {
 
 const NumberContainer = ({
   program,
-  setProgram,
+  setObjective,
+  setCurrent,
 }: {
   program: ProgramData;
-  setProgram: (text: string) => void;
+  setObjective: (text: string) => void;
+  setCurrent: (text: string) => void;
 }) => {
   return (
     <SmallInputContainer>
       <Input
         label="Goal :"
         placeholder="10"
-        onChange={({ nativeEvent: { text } }) => setProgram(text)}
+        onChange={({ nativeEvent: { text } }) => setObjective(text)}
         value={program.objective ? program.objective.toString() : ''}
         keyboardType="numeric"
       />
       <Input
         label="Start from :"
         placeholder="5"
-        onChange={({ nativeEvent: { text } }) => setProgram(text)}
+        onChange={({ nativeEvent: { text } }) => setCurrent(text)}
         value={program.current ? program.current.toString() : ''}
         keyboardType="numeric"
       />
