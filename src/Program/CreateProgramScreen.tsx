@@ -31,6 +31,12 @@ export const CreateProgramScreen = () => {
     });
   }, []);
 
+  const checkProgramValue = () => {
+    // TODO set program with latest Date and Time value
+
+    storeData({ value: program, key: mockedKey });
+  };
+
   return (
     <Container>
       <Input
@@ -51,7 +57,7 @@ export const CreateProgramScreen = () => {
             setProgram({ ...program, current: parseInt(text, 10) });
           }}
         />
-        <Dropdown data={unit} />
+        <Dropdown data={unit} /> {/* TODO store unit */}
       </ExerciseContainer>
       <DateButton
         label={'Goal Date :'}
@@ -65,10 +71,7 @@ export const CreateProgramScreen = () => {
         date={time}
         setDate={setTime}
       />
-      <Button.Primary
-        label="Confirm"
-        onPress={() => storeData({ value: program, key: mockedKey })}
-      />
+      <Button.Primary label="Confirm" onPress={() => checkProgramValue()} />
     </Container>
   );
 };
