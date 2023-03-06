@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
 import styled from '@emotion/native';
 
 import { ProgramData } from './ProgramDataType';
@@ -10,6 +10,7 @@ import { storeData } from '../localStorage/storeData';
 import { readData } from '../localStorage/readData';
 
 const unit = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
+const mockedKey = 'abc';
 
 export const CreateProgramScreen = () => {
   const [program, setProgram] = useState<ProgramData>({
@@ -18,10 +19,11 @@ export const CreateProgramScreen = () => {
     current: 0,
     unit: 'unit',
   });
-  const mockedKey = 'abc';
 
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
+
+  const theme = useContext(ProgramContext);
 
   useEffect(() => {
     readData(mockedKey).then(data => {

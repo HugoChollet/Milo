@@ -10,32 +10,27 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/RootStack';
 import { CardList } from '../components/CardList/CardList';
 import { CardProps } from '../components/Card/Card';
+import { readData } from '../localStorage/readData';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Program'>;
 
 export const ProgramScreen = ({ navigation }: Props) => {
-  const [programData, setProgramData] = useState<Array<ProgramData>>(null);
+  const [programList, setProgramList] = useState<Array<ProgramData>>(null);
+  const ProgramContext = React.createContext({});
 
   useEffect(() => {
-    console.log('test');
-
-    setProgramData([
-      {
-        name: 'string',
-        objective: 'string',
-      },
-      {
-        name: 'test',
-        objective: 'click',
-      },
-    ]);
+    readData('Program').then(data => {
+      if (data !== null) {
+        setProgramList(data);
+      }
+    });
   }, []);
 
   return (
     <Container>
-      {programData && (
+      {programList && (
         <CardList
-          data={programData.map(data => {
+          data={programList.map(data => {
             const tmp = {
               title: data.name,
               subtitle: data.objective.toString(),
@@ -44,10 +39,13 @@ export const ProgramScreen = ({ navigation }: Props) => {
           })}
         />
       )}
-      <IconButton
-        Icon={CrossIcon}
-        onPress={() => navigation.navigate('CreateProgramScreen')}
-      />
+
+      <ProgramContext.Provider value="new">
+        <IconButton
+          Icon={CrossIcon}
+          onPress={() => navigation.navigate('CreateProgramScreen')}
+        />
+      </ProgramContext.Provider>
     </Container>
   );
 };
