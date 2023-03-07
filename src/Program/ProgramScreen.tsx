@@ -41,7 +41,7 @@ export const ProgramScreen = ({ navigation }: Props) => {
         Icon={CrossIcon}
         onPress={() =>
           navigation.navigate('CreateProgramScreen', {
-            index: 86,
+            index: programList ? programList.length : 0,
             programList: programList,
           })
         }

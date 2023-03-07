@@ -14,29 +14,47 @@ const unit = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
 
 type CreateProgramScreenProps = {
   navigation: NativeStackScreenProps<RootStackParamList, 'CreateProgramScreen'>;
-  route: { params: { itemId: number; programList: String; index: number } };
+  route: {
+    params: {
+      programId: number;
+      programList: Array<ProgramData>;
+    };
+  };
 };
 
 export const CreateProgramScreen = ({
   route,
   navigation,
 }: CreateProgramScreenProps) => {
-  const { programList, index } = route.params;
+  const { programList, programId } = route.params;
   const [program, setProgram] = useState<ProgramData>({
     name: '',
     objective: 0,
     current: 0,
     unit: 'unit',
   });
-  const mockedKey = 'abc';
 
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
 
+  if (programId < programList.length) {
+    console.log('New prgram as : ', programId);
+
+    setProgram(programList[programId]);
+  }
+
   const checkProgramValue = () => {
     // TODO set program with latest Date and Time value
+    console.log('before :', programList);
 
-    storeData({ value: program, key: mockedKey });
+    if (programId > programList.length) {
+      programList.push(program);
+    } else {
+      programList[programId] = program;
+    }
+    console.log('after :', programList);
+
+    storeData({ value: programList, key: 'Program' });
   };
 
   return (
