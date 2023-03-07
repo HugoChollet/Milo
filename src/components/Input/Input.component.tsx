@@ -8,10 +8,7 @@ import { Typography } from '../Typography/Typography.component';
 import { Container, InputBox, Label } from './Input.styles';
 import { InputContainer } from './common.style';
 
-export type InputProps = Omit<
-  TextInputProps,
-  'onFocus' | 'onBlur' | 'editable'
-> & {
+export type InputProps = Omit<TextInputProps, 'onFocus' | 'editable'> & {
   label?: string;
   isDisabled?: boolean;
   isError?: boolean;

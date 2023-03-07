@@ -6,13 +6,13 @@ import { CardContainer, ContentContainer, ImageCard } from './Card.style';
 // import { IngredientsList } from '../IngredientsList/IngredientsList';
 
 const DEFAULT_IMAGE_URL =
-  'https://cdn2.justwineapp.com/assets/article/2019/08/different-types-of-beer-styles-guide-1800x946.jpg';
+  'https://images.everydayhealth.com/images/everything-you-need-know-about-fitness-1440x810.jpg';
 
 export type CardProps = {
   image?: string;
   title: string;
   subtitle?: string;
-  onPress: () => void;
+  onPress?: () => void;
   completion?: number;
 };
 
