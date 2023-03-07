@@ -1,5 +1,7 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import styled from '@emotion/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/RootStack';
 
 import { ProgramData } from './ProgramDataType';
 import { Input } from '../components/Input/Input.component';
@@ -7,31 +9,29 @@ import { Dropdown } from '../components/DropDown/Dropdown';
 import { DateButton } from '../components/DateButton/DateButton';
 import { Button } from '../components/Button/Button.component';
 import { storeData } from '../localStorage/storeData';
-import { readData } from '../localStorage/readData';
 
 const unit = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
-const mockedKey = 'abc';
 
-export const CreateProgramScreen = () => {
+type CreateProgramScreenProps = {
+  navigation: NativeStackScreenProps<RootStackParamList, 'CreateProgramScreen'>;
+  route: { params: { itemId: number; programList: String; index: number } };
+};
+
+export const CreateProgramScreen = ({
+  route,
+  navigation,
+}: CreateProgramScreenProps) => {
+  const { programList, index } = route.params;
   const [program, setProgram] = useState<ProgramData>({
     name: '',
     objective: 0,
     current: 0,
     unit: 'unit',
   });
+  const mockedKey = 'abc';
 
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
-
-  const theme = useContext(ProgramContext);
-
-  useEffect(() => {
-    readData(mockedKey).then(data => {
-      if (data !== null) {
-        setProgram(data);
-      }
-    });
-  }, []);
 
   const checkProgramValue = () => {
     // TODO set program with latest Date and Time value
@@ -59,7 +59,8 @@ export const CreateProgramScreen = () => {
             setProgram({ ...program, current: parseInt(text, 10) });
           }}
         />
-        <Dropdown data={unit} /> {/* TODO store unit */}
+        <Dropdown data={unit} />
+        {/* TODO store unit */}
       </ExerciseContainer>
       <DateButton
         label={'Goal Date :'}

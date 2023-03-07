@@ -9,14 +9,12 @@ import { ProgramData } from './ProgramDataType';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/RootStack';
 import { CardList } from '../components/CardList/CardList';
-import { CardProps } from '../components/Card/Card';
 import { readData } from '../localStorage/readData';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Program'>;
 
 export const ProgramScreen = ({ navigation }: Props) => {
   const [programList, setProgramList] = useState<Array<ProgramData>>(null);
-  const ProgramContext = React.createContext({});
 
   useEffect(() => {
     readData('Program').then(data => {
@@ -39,13 +37,15 @@ export const ProgramScreen = ({ navigation }: Props) => {
           })}
         />
       )}
-
-      <ProgramContext.Provider value="new">
-        <IconButton
-          Icon={CrossIcon}
-          onPress={() => navigation.navigate('CreateProgramScreen')}
-        />
-      </ProgramContext.Provider>
+      <IconButton
+        Icon={CrossIcon}
+        onPress={() =>
+          navigation.navigate('CreateProgramScreen', {
+            index: 86,
+            programList: programList,
+          })
+        }
+      />
     </Container>
   );
 };
