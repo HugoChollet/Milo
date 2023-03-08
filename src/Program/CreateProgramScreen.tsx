@@ -13,7 +13,7 @@ import { storeData } from '../localStorage/storeData';
 const unit = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
 
 type CreateProgramScreenProps = {
-  navigation: NativeStackScreenProps<RootStackParamList, 'CreateProgramScreen'>;
+  navigation: any;
   route: {
     params: {
       programId: number;
@@ -38,23 +38,19 @@ export const CreateProgramScreen = ({
   const [time, setTime] = useState(new Date());
 
   if (programId < programList.length) {
-    console.log('New prgram as : ', programId);
-
     setProgram(programList[programId]);
   }
 
-  const checkProgramValue = () => {
+  const confirmProgram = () => {
     // TODO set program with latest Date and Time value
-    console.log('before :', programList);
-
     if (programId > programList.length) {
       programList.push(program);
     } else {
       programList[programId] = program;
     }
-    console.log('after :', programList);
 
     storeData({ value: programList, key: 'Program' });
+    navigation.goBack();
   };
 
   return (
@@ -92,7 +88,7 @@ export const CreateProgramScreen = ({
         date={time}
         setDate={setTime}
       />
-      <Button.Primary label="Confirm" onPress={() => checkProgramValue()} />
+      <Button.Primary label="Confirm" onPress={() => confirmProgram()} />
     </Container>
   );
 };
