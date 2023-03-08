@@ -43,12 +43,12 @@ export const CreateProgramScreen = ({
 
   const confirmProgram = () => {
     // TODO set program with latest Date and Time value
-    if (programId > programList.length) {
+
+    if (programId >= programList.length) {
       programList.push(program);
     } else {
       programList[programId] = program;
     }
-
     storeData({ value: programList, key: 'Program' });
     navigation.goBack();
   };
@@ -73,7 +73,12 @@ export const CreateProgramScreen = ({
             setProgram({ ...program, current: parseInt(text, 10) });
           }}
         />
-        <Dropdown data={unit} />
+        <Dropdown
+          data={unit}
+          onSelect={(selectedItem, index) => {
+            setProgram({ ...program, unit: selectedItem });
+          }}
+        />
         {/* TODO store unit */}
       </ExerciseContainer>
       <DateButton
