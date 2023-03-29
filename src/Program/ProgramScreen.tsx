@@ -1,40 +1,47 @@
 import React, { useEffect, useState } from 'react';
-import { useTheme } from '@emotion/react';
-import styled from '@emotion/native';
 
-import { ProgramList } from './ProgramList';
 import { CrossIcon } from '../icons/Cross.icon';
 import { IconButton } from '../components/IconButton/IconButton.component';
 import { ProgramData } from './ProgramDataType';
 
-export const ProgramScreen = () => {
-  const [programData, setProgramData] = useState<Array<ProgramData>>(null);
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/RootStack';
+import { CardList } from '../components/CardList/CardList';
+import { readData } from '../localStorage/readData';
+import { ListContainer } from './program.style';
+
+type Props = NativeStackScreenProps<RootStackParamList, 'Program'>;
+
+export const ProgramScreen = ({ navigation }: Props) => {
+  const [programList, setProgramList] = useState<Array<ProgramData>>(null);
 
   useEffect(() => {
-    console.log('test');
-
-    setProgramData([
-      {
-        name: 'string',
-        objective: 'string',
-      },
-      {
-        name: 'test',
-        objective: 'click',
-      },
-    ]);
+    readData('Program').then(data => {
+      if (data !== null) {
+        setProgramList(data);
+      }
+    });
   }, []);
 
   return (
-    <Container>
-      <ProgramList data={programData} />
-      <IconButton Icon={CrossIcon} onPress={() => {}} />
-    </Container>
+    <ListContainer>
+      {programList && (
+        <CardList
+          data={programList.map(data => ({
+            title: data.name,
+            subtitle: data.objective.toString(),
+          }))}
+        />
+      )}
+      <IconButton
+        Icon={CrossIcon}
+        onPress={() =>
+          navigation.navigate('CreateProgramScreen', {
+            programId: programList ? programList.length : 0,
+            programList: programList,
+          })
+        }
+      />
+    </ListContainer>
   );
 };
-
-const Container = styled.View(() => ({
-  flex: 1,
-  flexDirection: 'column',
-  justifyContent: 'space-around',
-}));
