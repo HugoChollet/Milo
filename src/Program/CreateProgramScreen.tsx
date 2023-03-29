@@ -1,7 +1,4 @@
-import React, { useEffect, useState } from 'react';
-import styled from '@emotion/native';
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
-import { RootStackParamList } from '../types/RootStack';
+import React, { useState } from 'react';
 
 import { ProgramData } from './ProgramDataType';
 import { Input } from '../components/Input/Input.component';
@@ -9,6 +6,11 @@ import { Dropdown } from '../components/DropDown/Dropdown';
 import { DateButton } from '../components/DateButton/DateButton';
 import { Button } from '../components/Button/Button.component';
 import { storeData } from '../localStorage/storeData';
+import {
+  FormContainer,
+  ExerciseContainer,
+  SmallInputContainer,
+} from './program.style';
 
 const unit = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
 
@@ -33,7 +35,6 @@ export const CreateProgramScreen = ({
     current: 0,
     unit: 'unit',
   });
-
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
 
@@ -54,7 +55,7 @@ export const CreateProgramScreen = ({
   };
 
   return (
-    <Container>
+    <FormContainer>
       <Input
         label="Name of the exerise :"
         placeholder="Morning Jog"
@@ -94,7 +95,7 @@ export const CreateProgramScreen = ({
         setDate={setTime}
       />
       <Button.Primary label="Confirm" onPress={() => confirmProgram()} />
-    </Container>
+    </FormContainer>
   );
 };
 
@@ -126,18 +127,3 @@ const NumberContainer = ({
     </SmallInputContainer>
   );
 };
-
-const ExerciseContainer = styled.View(({ theme }) => ({
-  flexDirection: 'row',
-}));
-
-const Container = styled.View(({ theme }) => ({
-  flex: 1,
-  flexDirection: 'column',
-  paddingHorizontal: theme.spaces.m,
-  justifyContent: 'space-around',
-}));
-
-const SmallInputContainer = styled.View(({ theme }) => ({
-  width: theme.spaces.doubleXl * 2,
-}));

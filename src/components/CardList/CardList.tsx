@@ -1,12 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { FlatList } from 'react-native';
 import styled from '@emotion/native';
 
 import { Card, CardProps } from '../Card/Card';
 
 const programCard = ({ item }: { item: CardProps }) => {
-  console.log(item);
-
   return (
     <Card
       title={item.title}
