@@ -13,7 +13,7 @@ import { ListContainer } from './program.style';
 type Props = NativeStackScreenProps<RootStackParamList, 'Program'>;
 
 export const ProgramScreen = ({ navigation }: Props) => {
-  const [programList, setProgramList] = useState<Array<ProgramData>>(null);
+  const [programList, setProgramList] = useState<Array<ProgramData>>([]);
 
   useEffect(() => {
     readData('Program').then(data => {
@@ -30,6 +30,11 @@ export const ProgramScreen = ({ navigation }: Props) => {
           data={programList.map(data => ({
             title: data.name,
             subtitle: data.objective.toString(),
+            onPress: () =>
+              navigation.navigate('EditProgramScreen', {
+                program: data,
+                programList: programList,
+              }),
           }))}
         />
       )}
