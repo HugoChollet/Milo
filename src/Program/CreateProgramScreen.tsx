@@ -10,6 +10,7 @@ import {
   FormContainer,
   ExerciseContainer,
   NumberContainer,
+  getNewId,
 } from './program.style';
 
 const UNIT = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
@@ -34,7 +35,7 @@ export const CreateProgramScreen = ({
     objective: 0,
     current: 0,
     unit: 'unit',
-    id: Math.floor(Math.random() * 10000),
+    id: getNewId(programList),
   });
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
