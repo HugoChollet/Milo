@@ -9,10 +9,10 @@ import { storeData } from '../localStorage/storeData';
 import {
   FormContainer,
   ExerciseContainer,
-  SmallInputContainer,
+  NumberContainer,
 } from './program.style';
 
-const unit = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
+const UNIT = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
 
 type CreateProgramScreenProps = {
   navigation: any;
@@ -34,6 +34,7 @@ export const CreateProgramScreen = ({
     objective: 0,
     current: 0,
     unit: 'unit',
+    id: Math.floor(Math.random() * 10000),
   });
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
@@ -75,7 +76,7 @@ export const CreateProgramScreen = ({
           }}
         />
         <Dropdown
-          data={unit}
+          data={UNIT}
           onSelect={(selectedItem, index) => {
             setProgram({ ...program, unit: selectedItem });
           }}
@@ -96,34 +97,5 @@ export const CreateProgramScreen = ({
       />
       <Button.Primary label="Confirm" onPress={() => confirmProgram()} />
     </FormContainer>
-  );
-};
-
-const NumberContainer = ({
-  program,
-  setObjective,
-  setCurrent,
-}: {
-  program: ProgramData;
-  setObjective: (text: string) => void;
-  setCurrent: (text: string) => void;
-}) => {
-  return (
-    <SmallInputContainer>
-      <Input
-        label="Goal :"
-        placeholder="10"
-        onChange={({ nativeEvent: { text } }) => setObjective(text)}
-        value={program.objective ? program.objective.toString() : ''}
-        keyboardType="numeric"
-      />
-      <Input
-        label="Start from :"
-        placeholder="5"
-        onChange={({ nativeEvent: { text } }) => setCurrent(text)}
-        value={program.current ? program.current.toString() : ''}
-        keyboardType="numeric"
-      />
-    </SmallInputContainer>
   );
 };
