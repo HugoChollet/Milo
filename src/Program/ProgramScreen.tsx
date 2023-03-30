@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { useIsFocused } from '@react-navigation/native';
+import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { CrossIcon } from '../icons/Cross.icon';
-import { IconButton } from '../components/IconButton/IconButton.component';
 import { ProgramData } from './ProgramDataType';
-
-import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/RootStack';
+import { IconButton } from '../components/IconButton/IconButton.component';
 import { CardList } from '../components/CardList/CardList';
 import { readData } from '../localStorage/readData';
 import { ListContainer } from './program.style';
@@ -14,6 +14,7 @@ type Props = NativeStackScreenProps<RootStackParamList, 'Program'>;
 
 export const ProgramScreen = ({ navigation }: Props) => {
   const [programList, setProgramList] = useState<Array<ProgramData>>([]);
+  const isFocused = useIsFocused();
 
   useEffect(() => {
     readData('Program').then(data => {
@@ -21,7 +22,7 @@ export const ProgramScreen = ({ navigation }: Props) => {
         setProgramList(data);
       }
     });
-  }, []);
+  }, [isFocused]);
 
   return (
     <ListContainer>
