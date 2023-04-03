@@ -3,6 +3,5 @@ export type RootStackParamList = {
   Login: undefined;
   Register: undefined;
   Program: undefined;
-  CreateProgramScreen: undefined;
-  EditProgramScreen: undefined;
+  MakeProgram: undefined;
 };

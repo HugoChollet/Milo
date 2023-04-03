@@ -10,7 +10,6 @@ import { LoginScreen } from './src/Login/LoginScreen';
 
 import { RootStackParamList } from './src/types/RootStack';
 import { ProgramScreen } from './src/Program/ProgramScreen';
-import { CreateProgramScreen } from './src/Program/CreateProgramScreen';
 import { EditProgramScreen } from './src/Program/EditProgramScreen';
 
 const App = () => {
@@ -25,14 +24,7 @@ const App = () => {
             <Stack.Screen name="Login" component={LoginScreen} />
             <Stack.Screen name="Register" component={LoginScreen} />
             <Stack.Screen name="Program" component={ProgramScreen} />
-            <Stack.Screen
-              name="CreateProgramScreen"
-              component={CreateProgramScreen}
-            />
-            <Stack.Screen
-              name="EditProgramScreen"
-              component={EditProgramScreen}
-            />
+            <Stack.Screen name="MakeProgram" component={EditProgramScreen} />
           </Stack.Navigator>
         </ThemeProvider>
       </SafeAreaProvider>

@@ -32,7 +32,7 @@ export const ProgramScreen = ({ navigation }: Props) => {
             title: data.name,
             subtitle: data.objective.toString(),
             onPress: () =>
-              navigation.navigate('EditProgramScreen', {
+              navigation.navigate('MakeProgram', {
                 program: data,
                 programList: programList,
               }),
@@ -42,8 +42,7 @@ export const ProgramScreen = ({ navigation }: Props) => {
       <IconButton
         Icon={CrossIcon}
         onPress={() =>
-          navigation.navigate('CreateProgramScreen', {
-            programId: programList ? programList.length : 0,
+          navigation.navigate('MakeProgram', {
             programList: programList,
           })
         }

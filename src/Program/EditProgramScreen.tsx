@@ -11,14 +11,17 @@ import {
   ExerciseContainer,
   NumberContainer,
 } from './program.style';
+import { getNewId } from './getNewId';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/RootStack';
 
 const UNIT = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
 
 type CreateProgramScreenProps = {
-  navigation: any;
+  navigation: NativeStackScreenProps<RootStackParamList, 'MakeProgram'>;
   route: {
     params: {
-      program: ProgramData;
+      program?: ProgramData;
       programList: Array<ProgramData>;
     };
   };
@@ -29,7 +32,15 @@ export const EditProgramScreen = ({
   navigation,
 }: CreateProgramScreenProps) => {
   const programList = route.params.programList;
-  const [program, setProgram] = useState<ProgramData>(route.params.program);
+  const [program, setProgram] = useState<ProgramData>(
+    route.params.program || {
+      name: '',
+      objective: 0,
+      current: 0,
+      unit: 'unit',
+      id: getNewId(programList),
+    },
+  );
   const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
 
