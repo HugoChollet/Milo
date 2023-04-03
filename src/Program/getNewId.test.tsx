@@ -1,4 +1,4 @@
-import { getNewId } from './program.style';
+import { getNewId } from './getNewId';
 import { ProgramData } from './ProgramDataType';
 
 const mockProgram = {
