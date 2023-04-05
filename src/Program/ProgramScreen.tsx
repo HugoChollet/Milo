@@ -19,7 +19,15 @@ export const ProgramScreen = ({ navigation }: Props) => {
   useEffect(() => {
     readData('Program').then(data => {
       if (data !== null) {
-        setProgramList(data);
+        setProgramList(
+          data.map((item: ProgramData) => {
+            return {
+              ...item,
+              date: new Date(item.date),
+              time: new Date(item.time),
+            };
+          }),
+        );
       }
     });
   }, [isFocused]);

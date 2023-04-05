@@ -39,26 +39,18 @@ export const EditProgramScreen = ({
       current: 0,
       unit: 'unit',
       id: getNewId(programList),
+      date: new Date(),
+      time: new Date(),
     },
   );
-  const [date, setDate] = useState(new Date());
   const [time, setTime] = useState(new Date());
 
   const confirmProgram = () => {
-    // TODO set program with latest Date and Time value
-    if (!program.id) {
-      program.id = Math.floor(Math.random() * 10000);
-    }
-    console.log(program.id);
-
     if (programList.findIndex(item => item.id === program.id) === -1) {
       programList.push(program);
     } else {
-      console.log('programs befrore :::', programList);
-
       programList[programList.findIndex(item => item.id === program.id)] =
         program;
-      console.log('programs after :::', programList);
     }
 
     storeData({ value: programList, key: 'Program' });
@@ -96,14 +88,18 @@ export const EditProgramScreen = ({
       <DateButton
         label={'Goal Date :'}
         mode="date"
-        date={date}
-        setDate={setDate}
+        date={program.date}
+        setDate={newDate => {
+          setProgram({ ...program, date: newDate });
+        }}
       />
       <DateButton
         label={'Time Reminder :'}
         mode="time"
-        date={time}
-        setDate={setTime}
+        date={program.time}
+        setDate={newDate => {
+          setProgram({ ...program, time: newDate });
+        }}
       />
       <Button.Primary label="Confirm" onPress={() => confirmProgram()} />
     </FormContainer>
