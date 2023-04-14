@@ -40,6 +40,7 @@ export const EditProgramScreen = ({
       id: getNewId(programList),
       endDate: new Date(),
       timeReminder: new Date(),
+      days: [false, false, false, false, false, false, false],
       completion: {
         currentStep: 0,
         totalStep: 0,
@@ -66,9 +67,9 @@ export const EditProgramScreen = ({
         label="Name of the exerise :"
         placeholder="Morning Jog"
         value={program ? program.name : ''}
-        onChange={({ nativeEvent: { text } }) => {
-          setProgram({ ...program, name: text });
-        }}
+        onChange={({ nativeEvent: { text } }) =>
+          setProgram({ ...program, name: text })
+        }
       />
       <ExerciseContainer>
         <NumberContainer
@@ -95,9 +96,9 @@ export const EditProgramScreen = ({
         <Dropdown
           data={UNIT}
           defaultValue={program.unit}
-          onSelect={(selectedItem, index) => {
-            setProgram({ ...program, unit: selectedItem });
-          }}
+          onSelect={selectedItem =>
+            setProgram({ ...program, unit: selectedItem })
+          }
         />
       </ExerciseContainer>
       <DateButton
@@ -116,7 +117,12 @@ export const EditProgramScreen = ({
           setProgram({ ...program, timeReminder: newDate });
         }}
       />
-      <DaySelector />
+      <DaySelector
+        value={program.days}
+        setValue={selectedDays =>
+          setProgram({ ...program, days: selectedDays })
+        }
+      />
       <Button.Primary label="Confirm" onPress={() => confirmProgram()} />
     </FormContainer>
   );

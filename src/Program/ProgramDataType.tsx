@@ -16,4 +16,5 @@ export type ProgramData = {
   endDate: Date;
   timeReminder: Date;
   completion: Completion;
+  days: Array<boolean>;
 };
