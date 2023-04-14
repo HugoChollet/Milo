@@ -14,6 +14,7 @@ import {
 import { getNewId } from './getNewId';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/RootStack';
+import { DaySelector } from '../components/DaySelector/DaySelector.component';
 
 const UNIT = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
 
@@ -99,6 +100,7 @@ export const EditProgramScreen = ({
           setProgram({ ...program, time: newDate });
         }}
       />
+      <DaySelector />
       <Button.Primary label="Confirm" onPress={() => confirmProgram()} />
     </FormContainer>
   );
