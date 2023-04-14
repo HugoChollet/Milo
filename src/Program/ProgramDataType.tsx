@@ -11,4 +11,5 @@ export type ProgramData = {
   completion?: number;
   date: Date;
   time: Date;
+  days: Array<boolean>;
 };

@@ -1,18 +1,21 @@
 import styled from '@emotion/native';
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { View } from 'react-native';
 import { SwitchButton } from '../SwitchButton/SwitchButton.component';
 
 const EMPTY_WEEK = [false, false, false, false, false, false, false];
 
 type DaySelectorProps = {
-  defaultValue?: Array<boolean>;
+  value: Array<boolean>;
+  setValue: (selectedDays: Array<boolean>) => void;
 };
 
-export const DaySelector = ({ defaultValue }: DaySelectorProps) => {
-  const [switchTab, setSwitchTab] = useState(
-    defaultValue ? defaultValue : EMPTY_WEEK,
-  );
+export const DaySelector = ({ value, setValue }: DaySelectorProps) => {
+  const [switchTab, setSwitchTab] = useState(value ? value : EMPTY_WEEK);
+
+  useEffect(() => {
+    setValue(switchTab);
+  }, [switchTab]);
 
   const switchValue = (indexValue: number) => {
     setSwitchTab(

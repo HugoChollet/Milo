@@ -42,6 +42,7 @@ export const EditProgramScreen = ({
       id: getNewId(programList),
       date: new Date(),
       time: new Date(),
+      days: [false, false, false, false, false, false, false],
     },
   );
   const confirmProgram = () => {
@@ -62,45 +63,46 @@ export const EditProgramScreen = ({
         label="Name of the exerise :"
         placeholder="Morning Jog"
         value={program ? program.name : ''}
-        onChange={({ nativeEvent: { text } }) => {
-          setProgram({ ...program, name: text });
-        }}
+        onChange={({ nativeEvent: { text } }) =>
+          setProgram({ ...program, name: text })
+        }
       />
       <ExerciseContainer>
         <NumberContainer
           program={program}
-          setObjective={text => {
-            setProgram({ ...program, objective: parseInt(text, 10) });
-          }}
-          setCurrent={text => {
-            setProgram({ ...program, current: parseInt(text, 10) });
-          }}
+          setObjective={text =>
+            setProgram({ ...program, objective: parseInt(text, 10) })
+          }
+          setCurrent={text =>
+            setProgram({ ...program, current: parseInt(text, 10) })
+          }
         />
         <Dropdown
           data={UNIT}
           defaultValue={program.unit}
-          onSelect={(selectedItem, index) => {
-            setProgram({ ...program, unit: selectedItem });
-          }}
+          onSelect={selectedItem =>
+            setProgram({ ...program, unit: selectedItem })
+          }
         />
       </ExerciseContainer>
       <DateButton
         label={'Goal Date :'}
         mode="date"
         date={program.date}
-        setDate={newDate => {
-          setProgram({ ...program, date: newDate });
-        }}
+        setDate={newDate => setProgram({ ...program, date: newDate })}
       />
       <DateButton
         label={'Time Reminder :'}
         mode="time"
         date={program.time}
-        setDate={newDate => {
-          setProgram({ ...program, time: newDate });
-        }}
+        setDate={newDate => setProgram({ ...program, time: newDate })}
       />
-      <DaySelector />
+      <DaySelector
+        value={program.days}
+        setValue={selectedDays =>
+          setProgram({ ...program, days: selectedDays })
+        }
+      />
       <Button.Primary label="Confirm" onPress={() => confirmProgram()} />
     </FormContainer>
   );
