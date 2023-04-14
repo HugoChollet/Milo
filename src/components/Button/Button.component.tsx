@@ -23,6 +23,7 @@ type ButtonProps = {
   StartIcon?: IconType;
   EndIcon?: IconType;
   style: ButtonStyle;
+  testId?: string;
 };
 
 export const BaseButton = ({
@@ -33,6 +34,7 @@ export const BaseButton = ({
   StartIcon,
   EndIcon,
   style,
+  testId,
 }: ButtonProps) => {
   const theme = useTheme();
 
@@ -49,7 +51,8 @@ export const BaseButton = ({
       onPress={onPress}
       disabled={isDisabled}
       style={style}
-      accessibilityLabel={label}>
+      accessibilityLabel={label}
+      testID={testId}>
       {StartIcon ? (
         <>
           <StartIcon color={style.textColor} size={BUTTON_ICON_SIZE_PX} />
