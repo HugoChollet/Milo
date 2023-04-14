@@ -9,7 +9,7 @@ const programCard = ({ item }: { item: CardProps }) => {
     <Card
       title={item.title}
       subtitle={item.subtitle}
-      onPress={() => {}}
+      onPress={item.onPress}
       image={item.image}
       completion={item.completion}
     />

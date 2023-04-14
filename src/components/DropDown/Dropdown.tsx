@@ -5,17 +5,18 @@ import SelectDropdown from 'react-native-select-dropdown';
 
 type DropdownProps = {
   data: Array<string>;
+  defaultValue: string;
   onSelect: (selectedItem: any, index: number) => void;
 };
 
-export const Dropdown = ({ data, onSelect }: DropdownProps) => {
+export const Dropdown = ({ data, defaultValue, onSelect }: DropdownProps) => {
   const theme = useTheme();
 
   return (
     <SelectDropdown
       data={data}
       onSelect={onSelect}
-      defaultValue="unit"
+      defaultValue={defaultValue}
       buttonStyle={{
         borderWidth: theme.spaces.xxs,
         borderColor: theme.colors.grey[200],

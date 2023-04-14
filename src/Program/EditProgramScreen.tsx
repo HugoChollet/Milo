@@ -9,49 +9,50 @@ import { storeData } from '../localStorage/storeData';
 import {
   FormContainer,
   ExerciseContainer,
-  SmallInputContainer,
+  NumberContainer,
 } from './program.style';
+import { getNewId } from './getNewId';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { RootStackParamList } from '../types/RootStack';
 
-const unit = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
+const UNIT = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
 
 type CreateProgramScreenProps = {
-  navigation: any;
+  navigation: NativeStackScreenProps<RootStackParamList, 'MakeProgram'>;
   route: {
     params: {
-      programId: number;
+      program?: ProgramData;
       programList: Array<ProgramData>;
     };
   };
 };
 
-export const CreateProgramScreen = ({
+export const EditProgramScreen = ({
   route,
   navigation,
 }: CreateProgramScreenProps) => {
-  const { programList, programId } = route.params;
-  const [program, setProgram] = useState<ProgramData>({
-    name: '',
-    objective: 0,
-    current: 0,
-    unit: 'unit',
-  });
-  const [date, setDate] = useState(new Date());
-  const [time, setTime] = useState(new Date());
-
-  if (programId < programList.length) {
-    setProgram(programList[programId]);
-  }
-
+  const programList = route.params.programList;
+  const [program, setProgram] = useState<ProgramData>(
+    route.params.program || {
+      name: '',
+      objective: 0,
+      current: 0,
+      unit: 'unit',
+      id: getNewId(programList),
+      date: new Date(),
+      time: new Date(),
+    },
+  );
   const confirmProgram = () => {
-    // TODO set program with latest Date and Time value
-
-    if (programId >= programList.length) {
+    if (programList.findIndex(item => item.id === program.id) === -1) {
       programList.push(program);
     } else {
-      programList[programId] = program;
+      programList[programList.findIndex(item => item.id === program.id)] =
+        program;
     }
+
     storeData({ value: programList, key: 'Program' });
-    navigation.goBack();
+    navigation.goBack(program);
   };
 
   return (
@@ -75,55 +76,30 @@ export const CreateProgramScreen = ({
           }}
         />
         <Dropdown
-          data={unit}
+          data={UNIT}
+          defaultValue={program.unit}
           onSelect={(selectedItem, index) => {
             setProgram({ ...program, unit: selectedItem });
           }}
         />
-        {/* TODO store unit */}
       </ExerciseContainer>
       <DateButton
         label={'Goal Date :'}
         mode="date"
-        date={date}
-        setDate={setDate}
+        date={program.date}
+        setDate={newDate => {
+          setProgram({ ...program, date: newDate });
+        }}
       />
       <DateButton
         label={'Time Reminder :'}
         mode="time"
-        date={time}
-        setDate={setTime}
+        date={program.time}
+        setDate={newDate => {
+          setProgram({ ...program, time: newDate });
+        }}
       />
       <Button.Primary label="Confirm" onPress={() => confirmProgram()} />
     </FormContainer>
-  );
-};
-
-const NumberContainer = ({
-  program,
-  setObjective,
-  setCurrent,
-}: {
-  program: ProgramData;
-  setObjective: (text: string) => void;
-  setCurrent: (text: string) => void;
-}) => {
-  return (
-    <SmallInputContainer>
-      <Input
-        label="Goal :"
-        placeholder="10"
-        onChange={({ nativeEvent: { text } }) => setObjective(text)}
-        value={program.objective ? program.objective.toString() : ''}
-        keyboardType="numeric"
-      />
-      <Input
-        label="Start from :"
-        placeholder="5"
-        onChange={({ nativeEvent: { text } }) => setCurrent(text)}
-        value={program.current ? program.current.toString() : ''}
-        keyboardType="numeric"
-      />
-    </SmallInputContainer>
   );
 };
