@@ -14,7 +14,9 @@ export const DaySelector = ({ value, setValue }: DaySelectorProps) => {
   const [switchTab, setSwitchTab] = useState(value ? value : EMPTY_WEEK);
 
   useEffect(() => {
-    setValue(switchTab);
+    if (switchTab !== value) {
+      setValue(switchTab);
+    }
   }, [switchTab]);
 
   const switchValue = (indexValue: number) => {
