@@ -43,8 +43,6 @@ export const EditProgramScreen = ({
       time: new Date(),
     },
   );
-  const [time, setTime] = useState(new Date());
-
   const confirmProgram = () => {
     if (programList.findIndex(item => item.id === program.id) === -1) {
       programList.push(program);
@@ -79,11 +77,11 @@ export const EditProgramScreen = ({
         />
         <Dropdown
           data={UNIT}
+          defaultValue={program.unit}
           onSelect={(selectedItem, index) => {
             setProgram({ ...program, unit: selectedItem });
           }}
         />
-        {/* TODO store unit */}
       </ExerciseContainer>
       <DateButton
         label={'Goal Date :'}
