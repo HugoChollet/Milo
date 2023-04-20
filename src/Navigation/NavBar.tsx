@@ -23,6 +23,7 @@ export const NavBar = () => {
         },
         tabBarActiveTintColor: theme.colors.primary[500],
         tabBarInactiveTintColor: theme.colors.grey[300],
+        headerShown: false,
       })}>
       <Tab.Screen name="Program" component={StackNavigationProgram} />
       <Tab.Screen name="Settings" component={SettingsScreen} />
