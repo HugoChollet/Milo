@@ -29,7 +29,11 @@ type CardListProps = {
 export const ProgramCardList = ({ data }: CardListProps) => {
   return (
     <Container>
-      <FlatList data={data} renderItem={programCard} />
+      <FlatList
+        data={data}
+        renderItem={programCard}
+        keyExtractor={item => item.title}
+      />
     </Container>
   );
 };
