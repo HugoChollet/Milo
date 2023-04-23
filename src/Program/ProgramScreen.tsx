@@ -9,6 +9,7 @@ import { IconButton } from '../components/IconButton/IconButton.component';
 import { readData } from '../localStorage/readData';
 import { ListContainer } from './program.style';
 import { ProgramCardList } from '../components/ProgramCardList/ProgramCardList.component';
+import { storeData } from '../localStorage/storeData';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Program'>;
 
@@ -32,6 +33,14 @@ export const ProgramScreen = ({ navigation }: Props) => {
     });
   }, [isFocused]);
 
+  const deleteProgram = (item: string) => {
+    const remainingProgram = programList.filter(
+      program => program.name !== item,
+    );
+    setProgramList(remainingProgram);
+    storeData({ value: remainingProgram, key: 'Program' });
+  };
+
   return (
     <ListContainer>
       {programList && (
@@ -46,7 +55,9 @@ export const ProgramScreen = ({ navigation }: Props) => {
                 program: data,
                 programList: programList,
               }),
-            onDelete: () => console.log('delete'),
+            onDelete: item => {
+              deleteProgram(item);
+            },
           }))}
         />
       )}

@@ -19,7 +19,7 @@ export type ProgramCardProps = {
   onPlay: () => void;
   onView: () => void;
   onEdit: () => void;
-  onDelete: () => void;
+  onDelete: (item: any) => void;
   completion?: number;
 };
 
@@ -41,7 +41,7 @@ export const ProgramCard = ({
         onPlay={onPlay}
         onView={onView}
         onEdit={onEdit}
-        onDelete={onDelete}
+        onDelete={() => onDelete(title)}
       />
       <ContentContainer>
         <Typography.Title size="xs">{title}</Typography.Title>
