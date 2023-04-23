@@ -50,21 +50,25 @@ export const IconButtonCard = ({
         Icon={PlayIcon}
         onPress={onPlay}
         color={theme.colors.grey[300]}
+        testID={'Play'}
       />
       <IconButton
         Icon={GraphIcon}
         onPress={onView}
         color={theme.colors.grey[300]}
+        testID={'View'}
       />
       <IconButton
         Icon={PencilIcon}
         onPress={onEdit}
         color={theme.colors.grey[300]}
+        testID={'Edit'}
       />
       <IconButton
         Icon={TrashIcon}
         onPress={onDelete}
         color={theme.colors.grey[300]}
+        testID={'Delete'}
       />
     </IconButtonContainer>
   );
