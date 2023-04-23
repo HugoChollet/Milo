@@ -14,8 +14,8 @@ const DEFAULT_IMAGE_URL =
 
 export type ProgramCardProps = {
   image?: string;
-  title: string;
-  subtitle?: string;
+  name: string;
+  objective?: string;
   onPlay: () => void;
   onView: () => void;
   onEdit: () => void;
@@ -25,8 +25,8 @@ export type ProgramCardProps = {
 
 export const ProgramCard = ({
   image = DEFAULT_IMAGE_URL,
-  title,
-  subtitle,
+  name,
+  objective,
   onPlay,
   onView,
   onEdit,
@@ -41,11 +41,13 @@ export const ProgramCard = ({
         onPlay={onPlay}
         onView={onView}
         onEdit={onEdit}
-        onDelete={() => onDelete(title)}
+        onDelete={() => onDelete(name)}
       />
       <ContentContainer>
-        <Typography.Title size="xs">{title}</Typography.Title>
-        <Typography.P3 color={theme.colors.grey[300]}>{subtitle}</Typography.P3>
+        <Typography.Title size="xs">{name}</Typography.Title>
+        <Typography.P3 color={theme.colors.grey[300]}>
+          {objective}
+        </Typography.P3>
       </ContentContainer>
     </CardContainer>
   );

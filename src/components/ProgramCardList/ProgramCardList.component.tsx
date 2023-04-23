@@ -10,8 +10,8 @@ import {
 const programCard = ({ item }: { item: ProgramCardProps }) => {
   return (
     <ProgramCard
-      title={item.title}
-      subtitle={item.subtitle}
+      name={item.name}
+      objective={item.objective}
       image={item.image}
       completion={item.completion}
       onPlay={item.onPlay}
@@ -32,7 +32,7 @@ export const ProgramCardList = ({ data }: CardListProps) => {
       <FlatList
         data={data}
         renderItem={programCard}
-        keyExtractor={item => item.title}
+        keyExtractor={item => item.name}
       />
     </Container>
   );

@@ -46,8 +46,8 @@ export const ProgramScreen = ({ navigation }: Props) => {
       {programList && (
         <ProgramCardList
           data={programList.map(data => ({
-            title: data.name,
-            subtitle: data.objective.toString(),
+            name: data.name,
+            objective: data.objective.toString(),
             onPlay: () => console.log('play'),
             onView: () => console.log('view'),
             onEdit: () =>
