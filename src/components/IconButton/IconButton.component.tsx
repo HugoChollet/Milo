@@ -12,6 +12,7 @@ type IconButtonProps = {
   size?: number;
   color?: string;
   border?: boolean;
+  testID?: string;
 };
 
 export const IconButton = ({
@@ -21,6 +22,7 @@ export const IconButton = ({
   size,
   color = 'black',
   border,
+  testID,
 }: IconButtonProps) => {
   const theme = useTheme();
 
@@ -29,7 +31,8 @@ export const IconButton = ({
       onPress={onPress}
       disabled={isDisabled}
       color={isDisabled ? theme.colors.grey[200] : color}
-      border={border}>
+      border={border}
+      testID={testID}>
       <Icon color={isDisabled ? theme.colors.grey[200] : color} size={size} />
     </Container>
   );

@@ -2,13 +2,14 @@ import React, { useEffect, useState } from 'react';
 import { useIsFocused } from '@react-navigation/native';
 import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
-import { ProgramData } from './ProgramDataType';
 import { RootStackParamList } from '../types/RootStack';
+import { ProgramData } from './ProgramDataType';
+import { PlusIcon } from '../icons/Plus.icon';
 import { IconButton } from '../components/IconButton/IconButton.component';
-import { CardList } from '../components/CardList/CardList';
 import { readData } from '../localStorage/readData';
 import { ListContainer } from './program.style';
-import { PlusIcon } from '../icons/Plus.icon';
+import { ProgramCardList } from '../components/ProgramCardList/ProgramCardList.component';
+import { storeData } from '../localStorage/storeData';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Program'>;
 
@@ -32,18 +33,31 @@ export const ProgramScreen = ({ navigation }: Props) => {
     });
   }, [isFocused]);
 
+  const deleteProgram = (item: string) => {
+    const remainingProgram = programList.filter(
+      program => program.name !== item,
+    );
+    setProgramList(remainingProgram);
+    storeData({ value: remainingProgram, key: 'Program' });
+  };
+
   return (
     <ListContainer>
       {programList && (
-        <CardList
+        <ProgramCardList
           data={programList.map(data => ({
-            title: data.name,
-            subtitle: data.objective.toString(),
-            onPress: () =>
+            name: data.name,
+            objective: data.objective.toString(),
+            onPlay: () => console.log('play'),
+            onView: () => console.log('view'),
+            onEdit: () =>
               navigation.navigate('MakeProgram', {
                 program: data,
                 programList: programList,
               }),
+            onDelete: item => {
+              deleteProgram(item);
+            },
           }))}
         />
       )}
