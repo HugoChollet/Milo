@@ -9,6 +9,6 @@ export type ProgramData = {
   tags?: Array<string>;
   image?: string;
   completion?: number;
-  date: Date;
-  time: Date;
+  endDate: Date;
+  timeReminder: Date;
 };

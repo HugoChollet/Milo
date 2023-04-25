@@ -40,8 +40,8 @@ export const EditProgramScreen = ({
       current: 0,
       unit: 'unit',
       id: getNewId(programList),
-      date: new Date(),
-      time: new Date(),
+      endDate: new Date(),
+      timeReminder: new Date(),
     },
   );
   const confirmProgram = () => {
@@ -87,17 +87,17 @@ export const EditProgramScreen = ({
       <DateButton
         label={'Goal Date :'}
         mode="date"
-        date={program.date}
+        date={program.endDate}
         setDate={newDate => {
-          setProgram({ ...program, date: newDate });
+          setProgram({ ...program, endDate: newDate });
         }}
       />
       <DateButton
         label={'Time Reminder :'}
         mode="time"
-        date={program.time}
+        date={program.timeReminder}
         setDate={newDate => {
-          setProgram({ ...program, time: newDate });
+          setProgram({ ...program, timeReminder: newDate });
         }}
       />
       <DaySelector />

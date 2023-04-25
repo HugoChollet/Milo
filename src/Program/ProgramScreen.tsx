@@ -24,8 +24,8 @@ export const ProgramScreen = ({ navigation }: Props) => {
           data.map((item: ProgramData) => {
             return {
               ...item,
-              date: new Date(item.date),
-              time: new Date(item.time),
+              endDate: new Date(item.endDate),
+              timeReminder: new Date(item.timeReminder),
             };
           }),
         );
