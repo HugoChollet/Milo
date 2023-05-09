@@ -36,12 +36,16 @@ export const EditProgramScreen = ({
   const [program, setProgram] = useState<ProgramData>(
     route.params.program || {
       name: '',
-      objective: 0,
-      current: 0,
       unit: 'unit',
       id: getNewId(programList),
       endDate: new Date(),
       timeReminder: new Date(),
+      completion: {
+        currentStep: 0,
+        totalStep: 0,
+        currentPerf: 0,
+        perfGoal: 0,
+      },
     },
   );
   const confirmProgram = () => {
@@ -69,11 +73,23 @@ export const EditProgramScreen = ({
       <ExerciseContainer>
         <NumberContainer
           program={program}
-          setObjective={text => {
-            setProgram({ ...program, objective: parseInt(text, 10) });
+          setGoal={text => {
+            setProgram({
+              ...program,
+              completion: {
+                ...program.completion,
+                perfGoal: parseInt(text, 10),
+              },
+            });
           }}
           setCurrent={text => {
-            setProgram({ ...program, current: parseInt(text, 10) });
+            setProgram({
+              ...program,
+              completion: {
+                ...program.completion,
+                currentPerf: parseInt(text, 10),
+              },
+            });
           }}
         />
         <Dropdown

@@ -47,7 +47,7 @@ export const ProgramScreen = ({ navigation }: Props) => {
         <ProgramCardList
           data={programList.map(data => ({
             name: data.name,
-            objective: data.objective.toString(),
+            completion: data.completion,
             onPlay: () =>
               navigation.navigate('Play', {
                 program: data,

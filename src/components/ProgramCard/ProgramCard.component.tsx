@@ -8,6 +8,7 @@ import {
   IconButtonCard,
   ImageCard,
 } from './ProgramCard.style';
+import { Completion } from '../../Program/ProgramDataType';
 
 const DEFAULT_IMAGE_URL =
   'https://images.everydayhealth.com/images/everything-you-need-know-about-fitness-1440x810.jpg';
@@ -15,18 +16,17 @@ const DEFAULT_IMAGE_URL =
 export type ProgramCardProps = {
   image?: string;
   name: string;
-  objective?: string;
+  completion: Completion;
   onPlay: () => void;
   onView: () => void;
   onEdit: () => void;
   onDelete: (item: any) => void;
-  completion?: number;
 };
 
 export const ProgramCard = ({
   image = DEFAULT_IMAGE_URL,
   name,
-  objective,
+  completion,
   onPlay,
   onView,
   onEdit,
@@ -46,7 +46,7 @@ export const ProgramCard = ({
       <ContentContainer>
         <Typography.Title size="xs">{name}</Typography.Title>
         <Typography.P3 color={theme.colors.grey[300]}>
-          {objective}
+          {completion.currentPerf} on {completion.perfGoal}
         </Typography.P3>
       </ContentContainer>
     </CardContainer>
