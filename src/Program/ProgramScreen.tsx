@@ -48,6 +48,7 @@ export const ProgramScreen = ({ navigation }: Props) => {
           data={programList.map(data => ({
             name: data.name,
             completion: data.completion,
+            unit: data.unit,
             onPlay: () =>
               navigation.navigate('Play', {
                 program: data,

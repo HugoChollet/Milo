@@ -1,4 +1,4 @@
-type unit = 'm' | 'km' | 'km/h' | 'g' | 'kg' | 's' | 'min' | 'unit';
+export type Unit = 'm' | 'km' | 'km/h' | 'g' | 'kg' | 's' | 'min' | 'unit';
 
 export type Completion = {
   currentStep: number;
@@ -10,8 +10,7 @@ export type Completion = {
 export type ProgramData = {
   id: number;
   name: string;
-  unit: unit;
-  tags?: Array<string>;
+  unit: Unit;
   image?: string;
   endDate: Date;
   timeReminder: Date;
