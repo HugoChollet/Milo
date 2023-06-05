@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useTheme } from '@emotion/react';
-import { Container } from '../IconButton/IconButton.styles';
+import { Container as IconContainer } from '../IconButton/IconButton.styles';
 import { PlayIcon } from '../../icons/Play.icon';
 import { StopIcon } from '../../icons/Stop.icon';
+import { View } from 'react-native';
 
 type PlayButtonProps = {
   onPress: () => void;
@@ -14,7 +15,7 @@ type PlayButtonProps = {
 export const PlayButton = ({
   onPress,
   size = 128,
-  color = 'black',
+  color,
   testID,
 }: PlayButtonProps) => {
   const theme = useTheme();
@@ -26,15 +27,18 @@ export const PlayButton = ({
   };
 
   return (
-    <Container
-      onPress={handlePress}
-      color={theme.colors.primary[100]}
-      testID={testID}>
-      {isPlaying ? (
-        <PlayIcon size={size} color={color} />
-      ) : (
-        <StopIcon size={size} color={color} />
-      )}
-    </Container>
+    <View style={{ padding: 48, justifyContent: 'flex-end' }}>
+      <IconContainer
+        onPress={handlePress}
+        color={theme.colors.primary[100]}
+        testID={testID}
+        border={true}>
+        {isPlaying ? (
+          <StopIcon size={size} color={color || theme.colors.primary[400]} />
+        ) : (
+          <PlayIcon size={size} color={color || theme.colors.primary[400]} />
+        )}
+      </IconContainer>
+    </View>
   );
 };
