@@ -6,10 +6,10 @@ import { RootStackParamList } from '../types/RootStack';
 import { ProgramData } from './ProgramDataType';
 import { PlusIcon } from '../icons/Plus.icon';
 import { IconButton } from '../components/IconButton/IconButton.component';
-import { readData } from '../localStorage/readData';
+import { readData } from '../LocalStorage/readData';
 import { ListContainer } from './program.style';
 import { ProgramCardList } from '../components/ProgramCardList/ProgramCardList.component';
-import { storeData } from '../localStorage/storeData';
+import { storeData } from '../LocalStorage/storeData';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Program'>;
 

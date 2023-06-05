@@ -5,7 +5,7 @@ import { Input } from '../components/Input/Input.component';
 import { Dropdown } from '../components/DropDown/Dropdown';
 import { DateButton } from '../components/DateButton/DateButton';
 import { Button } from '../components/Button/Button.component';
-import { storeData } from '../localStorage/storeData';
+import { storeData } from '../LocalStorage/storeData';
 import {
   FormContainer,
   ExerciseContainer,
