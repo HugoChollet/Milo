@@ -15,6 +15,8 @@ import { getNewId } from './getNewId';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/RootStack';
 import { DaySelector } from '../components/DaySelector/DaySelector.component';
+import { getRemainingDays } from './getRemainingSteps';
+import { getNextGoal } from './getNextGoal';
 
 const UNIT = ['m', 'km', 'km/h', 'g', 'kg', 's', 'min', 'unit'];
 
@@ -44,12 +46,26 @@ export const EditProgramScreen = ({
       completion: {
         currentStep: 0,
         totalStep: 0,
-        currentPerf: 0,
-        perfGoal: 0,
+        performances: [0],
+        finalGoal: 0,
+        nextGoal: 0,
       },
     },
   );
-  const confirmProgram = () => {
+
+  const confirmProgram = async () => {
+    const remainingDays = getRemainingDays(program.endDate, program.days);
+    setProgram({
+      ...program,
+      completion: {
+        ...program.completion,
+        nextGoal: getNextGoal({
+          ...program.completion,
+          totalStep: remainingDays,
+        }),
+        totalStep: remainingDays,
+      },
+    });
     if (programList.findIndex(item => item.id === program.id) === -1) {
       programList.push(program);
     } else {
@@ -57,7 +73,7 @@ export const EditProgramScreen = ({
         program;
     }
 
-    storeData({ value: programList, key: 'Program' });
+    await storeData({ value: programList, key: 'Program' });
     navigation.goBack(program);
   };
 
@@ -79,18 +95,15 @@ export const EditProgramScreen = ({
               ...program,
               completion: {
                 ...program.completion,
-                perfGoal: parseInt(text, 10),
+                finalGoal: parseInt(text, 10),
               },
             });
           }}
           setCurrent={text => {
-            setProgram({
-              ...program,
-              completion: {
-                ...program.completion,
-                currentPerf: parseInt(text, 10),
-              },
-            });
+            const tmp = program.completion;
+            tmp.performances[0] = text ? parseInt(text, 10) : 0;
+
+            setProgram({ ...program, completion: tmp });
           }}
         />
         <Dropdown

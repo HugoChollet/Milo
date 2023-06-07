@@ -48,7 +48,8 @@ export const ProgramCard = ({
       <ContentContainer>
         <Typography.Title size="xs">{name}</Typography.Title>
         <Typography.P3 color={theme.colors.grey[300]}>
-          {completion.currentPerf} {unit} on {completion.perfGoal} {unit}
+          {completion.performances.slice(-1)} {unit} on {completion.finalGoal}{' '}
+          {unit}
         </Typography.P3>
       </ContentContainer>
     </CardContainer>

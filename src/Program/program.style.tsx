@@ -40,8 +40,8 @@ export const NumberContainer = ({
         placeholder="10"
         onChange={({ nativeEvent: { text } }) => setGoal(text)}
         value={
-          program.completion.perfGoal
-            ? program.completion.perfGoal.toString()
+          program.completion.finalGoal
+            ? program.completion.finalGoal.toString()
             : ''
         }
         keyboardType="numeric"
@@ -51,8 +51,8 @@ export const NumberContainer = ({
         placeholder="5"
         onChange={({ nativeEvent: { text } }) => setCurrent(text)}
         value={
-          program.completion.currentPerf
-            ? program.completion.currentPerf.toString()
+          program.completion.performances.slice(-1)
+            ? program.completion.performances.slice(-1).toString()
             : ''
         }
         keyboardType="numeric"
