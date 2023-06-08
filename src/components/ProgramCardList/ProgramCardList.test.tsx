@@ -15,8 +15,9 @@ const mockedProgram = [
     completion: {
       currentStep: 0,
       totalStep: 0,
-      currentPerf: 10,
-      perfGoal: 100,
+      performances: [10],
+      finalGoal: 100,
+      nextGoal: 0,
     },
   },
 ];

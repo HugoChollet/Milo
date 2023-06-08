@@ -12,8 +12,9 @@ const mockOnDelete = jest.fn();
 const mockedCompleton = {
   currentStep: 0,
   totalStep: 0,
-  currentPerf: 10,
-  perfGoal: 100,
+  performances: [0],
+  finalGoal: 100,
+  nextGoal: 0,
 };
 
 describe('ProgramCard Component', () => {
@@ -33,7 +34,7 @@ describe('ProgramCard Component', () => {
     expect(screen.queryByText('mockName')).toBeTruthy();
   });
 
-  it('should render the subtitle like (currentPerf unit on perfGoal unit)', async () => {
+  it('should render the subtitle like (currentPerf unit on finalGoal unit)', async () => {
     wrapAndRender(
       <ProgramCard
         name="mockProgram"
@@ -48,9 +49,9 @@ describe('ProgramCard Component', () => {
 
     expect(
       screen.queryAllByText(
-        mockedCompleton.currentPerf.toString() +
+        mockedCompleton.performances.slice(-1).toString() +
           ' unit on ' +
-          mockedCompleton.perfGoal.toString() +
+          mockedCompleton.finalGoal.toString() +
           ' unit',
       ).length,
     ).toEqual(1);
