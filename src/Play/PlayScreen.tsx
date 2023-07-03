@@ -3,8 +3,10 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 
 import { RootStackParamList } from '../types/RootStack';
 import { ProgramData } from '../Program/ProgramDataType';
-import { View, Text } from 'react-native';
+import { Text } from 'react-native';
 import { ReadyToPlay } from './ReadyToPlay';
+import ModalInput from '../components/ModalInput/ModalInput';
+import { ProgramEnd } from './ProgramEnd';
 
 type PlayScreenProps = {
   navigation: NativeStackScreenProps<RootStackParamList, 'Play'>;
@@ -17,16 +19,23 @@ type PlayScreenProps = {
 
 export const PlayScreen = ({ route, navigation }: PlayScreenProps) => {
   const [program, setProgram] = useState<ProgramData>(route.params.program);
+  const [modalVisibily, setModalVisibility] = useState(false);
 
-  const updatePerformance = () => {
+  const updatePerformances = (value: string) => {
     setProgram({
       ...program,
       lastPractice: new Date(),
       completion: {
         ...program.completion,
-        performances: [...program.completion.performances, 10],
+        performances: [...program.completion.performances, Number(value)],
       },
     });
+  };
+
+  const nextAction = (isPlaying: boolean) => {
+    if (isPlaying) {
+      setModalVisibility(true);
+    }
   };
 
   const isTodayExercisePossible = () => {
@@ -36,36 +45,20 @@ export const PlayScreen = ({ route, navigation }: PlayScreenProps) => {
     );
   };
 
-  console.log(program);
-
   try {
     return isTodayExercisePossible() ? (
-      <ReadyToPlay program={program} updatePerformance={updatePerformance} />
+      <>
+        <ReadyToPlay program={program} nextAction={nextAction} />
+        <ModalInput
+          isVisible={modalVisibily}
+          onSubmit={updatePerformances}
+          onClose={() => setModalVisibility(false)}
+        />
+      </>
     ) : (
       <Text>You already did your exercise today</Text>
     );
   } catch {
-    return (
-      <View>
-        <Text>
-          You have no remaining time to achieve your goal of{' '}
-          {program.completion.finalGoal} {program.unit}
-        </Text>
-        {program.completion.finalGoal >
-        program.completion.performances[
-          program.completion.performances.length - 1
-        ] ? (
-          <Text>
-            But hey ! You got close by achieving{' '}
-            {program.completion.performances.slice(-1)} {program.unit}
-          </Text>
-        ) : (
-          <Text>
-            You over-acheive your goal with
-            {program.completion.performances.slice(-1)} {program.unit}
-          </Text>
-        )}
-      </View>
-    );
+    return <ProgramEnd program={program} />;
   }
 };

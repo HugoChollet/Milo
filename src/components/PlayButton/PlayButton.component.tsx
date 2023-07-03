@@ -6,7 +6,7 @@ import { StopIcon } from '../../icons/Stop.icon';
 import { View } from 'react-native';
 
 type PlayButtonProps = {
-  onPress: () => void;
+  onPress: (isPlaying: boolean) => void;
   size?: number;
   color?: string;
   testID?: string;
@@ -22,8 +22,10 @@ export const PlayButton = ({
   const [isPlaying, setIsPlaying] = useState(false);
 
   const handlePress = () => {
+    if (isPlaying) {
+      onPress(isPlaying);
+    }
     setIsPlaying(!isPlaying);
-    onPress();
   };
 
   return (

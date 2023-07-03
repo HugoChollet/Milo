@@ -8,17 +8,12 @@ import { ProgramData } from '../Program/ProgramDataType';
 
 type ReadyToPlayProps = {
   program: ProgramData;
-  updatePerformance: () => void;
+  nextAction: (isPlaying: boolean) => void;
 };
 
-export const ReadyToPlay = ({
-  program,
-  updatePerformance,
-}: ReadyToPlayProps) => {
+export const ReadyToPlay = ({ program, nextAction }: ReadyToPlayProps) => {
   const remainingSteps = getRemainingDays(program.endDate, program.days);
   const theme = useTheme();
-
-  console.log('ready');
 
   return (
     <View>
@@ -33,10 +28,7 @@ export const ReadyToPlay = ({
       <Text>
         Objective for today : {program.completion.nextGoal} {program.unit}
       </Text>
-      <PlayButton
-        onPress={() => updatePerformance()}
-        size={theme.spaces.doubleXl * 2}
-      />
+      <PlayButton onPress={nextAction} size={theme.spaces.doubleXl * 2} />
     </View>
   );
 };
