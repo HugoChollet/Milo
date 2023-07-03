@@ -4,9 +4,7 @@ import type { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { RootStackParamList } from '../types/RootStack';
 import { ProgramData } from '../Program/ProgramDataType';
 import { View, Text } from 'react-native';
-import { useTheme } from '@emotion/react';
-import { PlayButton } from '../components/PlayButton/PlayButton.component';
-import { getRemainingDays } from '../Program/getRemainingSteps';
+import { ReadyToPlay } from './ReadyToPlay';
 
 type PlayScreenProps = {
   navigation: NativeStackScreenProps<RootStackParamList, 'Play'>;
@@ -19,11 +17,11 @@ type PlayScreenProps = {
 
 export const PlayScreen = ({ route, navigation }: PlayScreenProps) => {
   const [program, setProgram] = useState<ProgramData>(route.params.program);
-  const theme = useTheme();
 
   const updatePerformance = () => {
     setProgram({
       ...program,
+      lastPractice: new Date(),
       completion: {
         ...program.completion,
         performances: [...program.completion.performances, 10],
@@ -31,27 +29,20 @@ export const PlayScreen = ({ route, navigation }: PlayScreenProps) => {
     });
   };
 
-  try {
-    const remainingSteps = getRemainingDays(program.endDate, program.days);
+  const isTodayExercisePossible = () => {
     return (
-      <View>
-        <Text>
-          You have {remainingSteps} sessions to achieve your goal of{' '}
-          {program.completion.finalGoal} {program.unit}
-        </Text>
-        <Text>
-          You are currently able to do{' '}
-          {program.completion.performances.slice(-1)} {program.unit} will you be
-          able do to better this time ?
-        </Text>
-        <Text>
-          Objective for today : {program.completion.nextGoal} {program.unit}
-        </Text>
-        <PlayButton
-          onPress={() => updatePerformance()}
-          size={theme.spaces.doubleXl * 2}
-        />
-      </View>
+      !program.lastPractice ||
+      program.lastPractice.getDate() !== new Date().getDate()
+    );
+  };
+
+  console.log(program);
+
+  try {
+    return isTodayExercisePossible() ? (
+      <ReadyToPlay program={program} updatePerformance={updatePerformance} />
+    ) : (
+      <Text>You already did your exercise today</Text>
     );
   } catch {
     return (
