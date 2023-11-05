@@ -7,11 +7,18 @@ import { ProgramCardList } from './ProgramCardList.component';
 const mockedProgram = [
   {
     name: 'name',
-    objective: 'goal',
+    unit: 'unit',
     onPlay: jest.fn(),
     onView: jest.fn(),
     onEdit: jest.fn(),
     onDelete: jest.fn(),
+    completion: {
+      currentStep: 0,
+      totalStep: 0,
+      performances: [10],
+      finalGoal: 100,
+      nextGoal: 0,
+    },
   },
 ];
 
@@ -20,6 +27,6 @@ describe('Program List', () => {
     wrapAndRender(<ProgramCardList data={mockedProgram} />);
 
     expect(screen.getByText('name')).toBeTruthy();
-    expect(screen.getByText('goal')).toBeTruthy();
+    expect(screen.getByText('10 unit on 100 unit')).toBeTruthy();
   });
 });

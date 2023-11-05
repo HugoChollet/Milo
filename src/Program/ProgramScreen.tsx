@@ -6,10 +6,10 @@ import { RootStackParamList } from '../types/RootStack';
 import { ProgramData } from './ProgramDataType';
 import { PlusIcon } from '../icons/Plus.icon';
 import { IconButton } from '../components/IconButton/IconButton.component';
-import { readData } from '../localStorage/readData';
+import { readData } from '../LocalStorage/readData';
 import { ListContainer } from './program.style';
 import { ProgramCardList } from '../components/ProgramCardList/ProgramCardList.component';
-import { storeData } from '../localStorage/storeData';
+import { storeData } from '../LocalStorage/storeData';
 
 type Props = NativeStackScreenProps<RootStackParamList, 'Program'>;
 
@@ -24,8 +24,8 @@ export const ProgramScreen = ({ navigation }: Props) => {
           data.map((item: ProgramData) => {
             return {
               ...item,
-              date: new Date(item.date),
-              time: new Date(item.time),
+              endDate: new Date(item.endDate),
+              timeReminder: new Date(item.timeReminder),
             };
           }),
         );
@@ -47,8 +47,12 @@ export const ProgramScreen = ({ navigation }: Props) => {
         <ProgramCardList
           data={programList.map(data => ({
             name: data.name,
-            objective: data.objective.toString(),
-            onPlay: () => console.log('play'),
+            completion: data.completion,
+            unit: data.unit,
+            onPlay: () =>
+              navigation.navigate('Play', {
+                program: data,
+              }),
             onView: () => console.log('view'),
             onEdit: () =>
               navigation.navigate('MakeProgram', {

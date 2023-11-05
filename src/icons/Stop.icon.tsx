@@ -6,18 +6,18 @@ import { DEFAULT_ICON_SIZE_PX } from './Icon.constants';
 
 import { IconType } from './Icon.types';
 
-const PlayIconSvg: IconType = ({ size = DEFAULT_ICON_SIZE_PX, color }) => {
+const StopIconSvg: IconType = ({ size = DEFAULT_ICON_SIZE_PX, color }) => {
   const theme = useTheme();
   return (
-    <Svg height={size} width={size} viewBox="0 0 24 24" fill="#000000">
+    <Svg width={size} height={size} viewBox="0 0 24 24" fill="none">
       <Path
-        d="M8 6.82v10.36c0 .79.87 1.27 1.54.84l8.14-5.18c.62-.39.62-1.29 0-1.69L9.54 5.98C8.87 5.55 8 6.03 8 6.82z"
+        d="M8 6h8c1.1 0 2 .9 2 2v8c0 1.1-.9 2-2 2H8c-1.1 0-2-.9-2-2V8c0-1.1.9-2 2-2z"
         fill={color || theme.colors.grey[50]}
       />
     </Svg>
   );
 };
 
-export const PlayIcon = memo(PlayIconSvg);
+export const StopIcon = memo(StopIconSvg);
 
-PlayIcon.displayName = 'Play';
+StopIcon.displayName = 'Stop';

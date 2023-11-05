@@ -11,9 +11,9 @@ const programCard = ({ item }: { item: ProgramCardProps }) => {
   return (
     <ProgramCard
       name={item.name}
-      objective={item.objective}
       image={item.image}
       completion={item.completion}
+      unit={item.unit}
       onPlay={item.onPlay}
       onView={item.onView}
       onEdit={item.onEdit}

@@ -26,11 +26,11 @@ export const SmallInputContainer = styled.View(({ theme }) => ({
 
 export const NumberContainer = ({
   program,
-  setObjective,
+  setGoal,
   setCurrent,
 }: {
   program: ProgramData;
-  setObjective: (text: string) => void;
+  setGoal: (text: string) => void;
   setCurrent: (text: string) => void;
 }) => {
   return (
@@ -38,15 +38,23 @@ export const NumberContainer = ({
       <Input
         label="Goal :"
         placeholder="10"
-        onChange={({ nativeEvent: { text } }) => setObjective(text)}
-        value={program.objective ? program.objective.toString() : ''}
+        onChange={({ nativeEvent: { text } }) => setGoal(text)}
+        value={
+          program.completion.finalGoal
+            ? program.completion.finalGoal.toString()
+            : ''
+        }
         keyboardType="numeric"
       />
       <Input
         label="Start from :"
         placeholder="5"
         onChange={({ nativeEvent: { text } }) => setCurrent(text)}
-        value={program.current ? program.current.toString() : ''}
+        value={
+          program.completion.performances.slice(-1)
+            ? program.completion.performances.slice(-1).toString()
+            : ''
+        }
         keyboardType="numeric"
       />
     </SmallInputContainer>

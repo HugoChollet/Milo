@@ -9,46 +9,64 @@ const mockOnPlay = jest.fn();
 const mockOnView = jest.fn();
 const mockOnEdit = jest.fn();
 const mockOnDelete = jest.fn();
+const mockedCompleton = {
+  currentStep: 0,
+  totalStep: 0,
+  performances: [0],
+  finalGoal: 100,
+  nextGoal: 0,
+};
 
 describe('ProgramCard Component', () => {
   it('should render the name', () => {
     wrapAndRender(
       <ProgramCard
-        name="mockNameBeer"
+        name="mockName"
+        unit="unit"
         onPlay={mockOnPlay}
         onView={mockOnView}
         onEdit={mockOnEdit}
         onDelete={mockOnDelete}
+        completion={mockedCompleton}
       />,
     );
 
-    expect(screen.getByText('mockNameBeer')).toBeTruthy();
+    expect(screen.queryByText('mockName')).toBeTruthy();
   });
 
-  it('should render the objective', () => {
+  it('should render the subtitle like (currentPerf unit on finalGoal unit)', async () => {
     wrapAndRender(
       <ProgramCard
         name="mockProgram"
-        objective="mockObjective"
+        unit="unit"
         onPlay={mockOnPlay}
         onView={mockOnView}
         onEdit={mockOnEdit}
         onDelete={mockOnDelete}
+        completion={mockedCompleton}
       />,
     );
 
-    expect(screen.getByText('mockObjective')).toBeTruthy();
+    expect(
+      screen.queryAllByText(
+        mockedCompleton.performances.slice(-1).toString() +
+          ' unit on ' +
+          mockedCompleton.finalGoal.toString() +
+          ' unit',
+      ).length,
+    ).toEqual(1);
   });
 
   it('should call the corresponding function', () => {
     wrapAndRender(
       <ProgramCard
         name="mockProgram"
-        objective="mockObjective"
+        unit="unit"
         onPlay={mockOnPlay}
         onView={mockOnView}
         onEdit={mockOnEdit}
         onDelete={mockOnDelete}
+        completion={mockedCompleton}
       />,
     );
 
